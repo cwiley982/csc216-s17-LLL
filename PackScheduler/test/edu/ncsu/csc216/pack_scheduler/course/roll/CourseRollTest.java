@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 /**
@@ -32,8 +33,9 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testCourseRoll() {
-		CourseRoll r = new CourseRoll(30);
-		assertEquals(r.getEnrollmentCap(), 30);
+		Course course = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		CourseRoll roll = course.getCourseRoll();
+		assertEquals(roll.getEnrollmentCap(), 10);
 	}
 
 	/**
@@ -41,19 +43,20 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testSetEnrollmentCap() {
-		CourseRoll r = new CourseRoll(30);
+		Course course = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		CourseRoll r = course.getCourseRoll();
 		try {
 			r.setEnrollmentCap(300);
 			fail();
 		} catch(IllegalArgumentException e) {
-			assertEquals(r.getEnrollmentCap(), 30);
+			assertEquals(r.getEnrollmentCap(), 10);
 		}
 		
 		try {
 			r.setEnrollmentCap(3);
 			fail();
 		} catch(IllegalArgumentException e) {
-			assertEquals(r.getEnrollmentCap(), 30);
+			assertEquals(r.getEnrollmentCap(), 10);
 		}
 		
 		try {
@@ -92,7 +95,8 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testGetOpenSeats() {
-		CourseRoll r = new CourseRoll(30);
+		Course course = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		CourseRoll r = course.getCourseRoll();
 		r.enroll(a);
 		r.enroll(b);
 		r.enroll(c);
@@ -103,32 +107,31 @@ public class CourseRollTest {
 		r.enroll(h);
 		r.enroll(i);
 		r.enroll(j);
-		r.enroll(k);
-		r.enroll(l);
-		assertEquals(r.getOpenSeats(), 18);
+		assertEquals(r.getOpenSeats(), 0);
 	}
 	/**
 	 * Test the enroll method
 	 */
 	@Test
 	public void testEnroll() {
-		CourseRoll r = new CourseRoll(11);
+		Course course = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		CourseRoll r = course.getCourseRoll();
 		try {
 			r.enroll(null);
 			fail();
 		} catch(IllegalArgumentException e) {
-			assertEquals(r.getOpenSeats(), 11);
+			assertEquals(r.getOpenSeats(), 10);
 		}
 		
 		r.enroll(a);
-		assertEquals(r.getOpenSeats(), 10);
+		assertEquals(r.getOpenSeats(), 9);
 		Student z = new Student("Claire", "Brown", "ckbrown3", "ckbrown3@ncsu.edu", "password123");
 		
 		try {
 			r.enroll(z);
 			fail();
 		} catch(IllegalArgumentException e) {
-			assertEquals(r.getOpenSeats(), 10);
+			assertEquals(r.getOpenSeats(), 9);
 		}
 		
 		r.enroll(b);
@@ -140,8 +143,7 @@ public class CourseRollTest {
 		r.enroll(h);
 		r.enroll(i);
 		r.enroll(k);
-		assertEquals(r.getOpenSeats(), 1);
-		r.enroll(j);
+		assertEquals(r.getOpenSeats(), 0);
 		
 		try {
 			r.enroll(k);
@@ -158,12 +160,13 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testDrop() {
-		CourseRoll r = new CourseRoll(11);
+		Course course = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		CourseRoll r = course.getCourseRoll();
 		try {
 			r.drop(null);
 			fail();
 		} catch(IllegalArgumentException e) {
-			assertEquals(r.getOpenSeats(), 11);
+			assertEquals(r.getOpenSeats(), 10);
 		}
 		
 		r.enroll(a);
@@ -171,10 +174,10 @@ public class CourseRollTest {
 		r.enroll(c);
 		
 		r.drop(d);
-		assertEquals(r.getOpenSeats(), 8);
+		assertEquals(r.getOpenSeats(), 7);
 		
 		r.drop(b);
-		assertEquals(r.getOpenSeats(), 9);
+		assertEquals(r.getOpenSeats(), 8);
 		
 	}
 
@@ -183,12 +186,13 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testCanEnroll() {
-		CourseRoll r = new CourseRoll(11);
+		Course course = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		CourseRoll r = course.getCourseRoll();
 		try {
 			r.canEnroll(null);
 			fail();
 		} catch(IllegalArgumentException e) {
-			assertEquals(r.getOpenSeats(), 11);
+			assertEquals(r.getOpenSeats(), 10);
 		}
 		
 		assertTrue(r.canEnroll(a));
@@ -204,7 +208,6 @@ public class CourseRollTest {
 		r.enroll(g);
 		r.enroll(h);
 		r.enroll(i);
-		r.enroll(k);
 		assertTrue(r.canEnroll(l));
 		r.enroll(j);
 		assertFalse(r.canEnroll(l));
