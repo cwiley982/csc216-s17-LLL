@@ -96,19 +96,18 @@ public class CourseRoll {
 		for(int i = 0; i < roll.size(); i++) {
 			if(s.equals(roll.get(i))) {
 				roll.remove(i);
+				roll.add(waitlist.dequeue());
 				break;
 			}
 		}
+
 		int listSize = waitlist.size();
-		for(int i = 0; i < listSize ; i++){
-			Student student = waitlist.dequeue();
+		for (int i = 0; i < listSize; i++) {
+			Student student = waitlist.dequeue(); // remove student
 			if(!student.equals(s)){
-				waitlist.enqueue(student);
+				waitlist.enqueue(student); // add back if not student trying to
+											// drop
 			}
-		}
-		if(roll.size() == this.enrollmentCap - 1){
-			Student student = waitlist.dequeue();
-			roll.add(student);
 		}
 	}
 	
