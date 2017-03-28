@@ -17,7 +17,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	/**
 	 * constructs an ArrayQueue
 	 */
-	public ArrayQueue(){
+	public ArrayQueue(int capacity) {
 		this.list = new ArrayList<E>();
 	}
 	

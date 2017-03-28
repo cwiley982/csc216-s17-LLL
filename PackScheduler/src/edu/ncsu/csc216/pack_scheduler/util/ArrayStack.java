@@ -4,7 +4,7 @@ import java.util.EmptyStackException;
 
 public class ArrayStack<E> implements Stack<E> {
 
-	public ArrayStack() {
+	public ArrayStack(int capacity) {
 		// TODO Auto-generated constructor stub
 	}
 

@@ -4,7 +4,7 @@ import java.util.EmptyStackException;
 
 public class LinkedStack<E> implements Stack<E> {
 
-	public LinkedStack() {
+	public LinkedStack(int capacity) {
 		// TODO Auto-generated constructor stub
 	}
 
