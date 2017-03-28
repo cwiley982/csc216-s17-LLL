@@ -20,7 +20,7 @@ import org.junit.Test;
 public class LinkedQueueTest {
 
 	/**
-	 * Tests adding one element to the queue
+	 * Tests adding one element to the empty queue
 	 */
 	@Test
 	public void testAddOneElement() {
