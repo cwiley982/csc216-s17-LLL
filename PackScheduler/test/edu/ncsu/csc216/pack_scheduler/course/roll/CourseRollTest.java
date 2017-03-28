@@ -214,7 +214,6 @@ public class CourseRollTest {
 		assertTrue(r.canEnroll(l));
 		r.enroll(j);
 		assertFalse(r.canEnroll(l));
-		
 	}
 
 }
