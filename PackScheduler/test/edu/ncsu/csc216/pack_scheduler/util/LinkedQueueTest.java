@@ -18,13 +18,14 @@ import org.junit.Test;
  *
  */
 public class LinkedQueueTest {
-
+	
+	private static int CAPACITY = 5;
 	/**
 	 * Tests adding one element to the empty queue
 	 */
 	@Test
 	public void testAddOneElement() {
-		LinkedQueue<String> q = new LinkedQueue<String>();
+		LinkedQueue<String> q = new LinkedQueue<String>(CAPACITY);
 		try {
 			q.enqueue("one");
 			assertEquals(1, q.size());
@@ -38,7 +39,7 @@ public class LinkedQueueTest {
 	 */
 	@Test
 	public void testAddMultipleElements() {
-		LinkedQueue<String> q = new LinkedQueue<String>();
+		LinkedQueue<String> q = new LinkedQueue<String>(CAPACITY);
 		try {
 			q.enqueue("one");
 			q.enqueue("two");
@@ -54,7 +55,7 @@ public class LinkedQueueTest {
 	 */
 	@Test
 	public void testRemoveOneElement() {
-		LinkedQueue<String> q = new LinkedQueue<String>();
+		LinkedQueue<String> q = new LinkedQueue<String>(CAPACITY);
 		q.enqueue("one");
 		assertEquals("one", q.dequeue());
 	}
@@ -64,7 +65,7 @@ public class LinkedQueueTest {
 	 */
 	@Test
 	public void testRemoveMultipleElements() {
-		LinkedQueue<String> q = new LinkedQueue<String>();
+		LinkedQueue<String> q = new LinkedQueue<String>(CAPACITY);
 		q.enqueue("one");
 		q.enqueue("two");
 		q.enqueue("three");
@@ -78,7 +79,7 @@ public class LinkedQueueTest {
 	 */
 	@Test
 	public void testRemoveLastElement() {
-		LinkedQueue<String> q = new LinkedQueue<String>();
+		LinkedQueue<String> q = new LinkedQueue<String>(CAPACITY);
 		q.enqueue("one");
 		q.enqueue("two");
 		q.enqueue("three");
@@ -94,7 +95,7 @@ public class LinkedQueueTest {
 	 */
 	@Test
 	public void testRemoveFromEmptyStack() {
-		LinkedQueue<String> q = new LinkedQueue<String>();
+		LinkedQueue<String> q = new LinkedQueue<String>(CAPACITY);
 		try {
 			q.dequeue();
 			fail();
@@ -108,7 +109,7 @@ public class LinkedQueueTest {
 	 */
 	@Test
 	public void testSetCapToSize() {
-		LinkedQueue<String> q = new LinkedQueue<String>();
+		LinkedQueue<String> q = new LinkedQueue<String>(CAPACITY);
 		try {
 			q.setCapacity(q.size());
 			assertTrue(q.isEmpty());
@@ -123,7 +124,7 @@ public class LinkedQueueTest {
 	 */
 	@Test
 	public void testSetInvalidCap() {
-		LinkedQueue<String> q = new LinkedQueue<String>();
+		LinkedQueue<String> q = new LinkedQueue<String>(CAPACITY);
 		q.enqueue("one");
 		q.enqueue("two");
 		try {
@@ -133,7 +134,7 @@ public class LinkedQueueTest {
 			assertEquals(2, q.size());
 		}
 
-		LinkedQueue<String> q2 = new LinkedQueue<String>();
+		LinkedQueue<String> q2 = new LinkedQueue<String>(CAPACITY);
 		q2.enqueue("one");
 		q2.enqueue("two");
 		try {

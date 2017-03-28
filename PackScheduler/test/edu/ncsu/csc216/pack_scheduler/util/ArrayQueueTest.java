@@ -18,13 +18,14 @@ import org.junit.Test;
  *
  */
 public class ArrayQueueTest {
-
+	
+	private static final int CAPACITY = 5;
 	/**
 	 * Tests adding one element to the queue
 	 */
 	@Test
 	public void testAddOneElement() {
-		ArrayQueue<String> q = new ArrayQueue<String>();
+		ArrayQueue<String> q = new ArrayQueue<String>(CAPACITY);
 		try {
 			q.enqueue("one");
 			assertEquals(1, q.size());
@@ -38,7 +39,7 @@ public class ArrayQueueTest {
 	 */
 	@Test
 	public void testAddMultipleElements() {
-		ArrayQueue<String> q = new ArrayQueue<String>();
+		ArrayQueue<String> q = new ArrayQueue<String>(CAPACITY);
 		try {
 			q.enqueue("one");
 			q.enqueue("two");
@@ -54,7 +55,7 @@ public class ArrayQueueTest {
 	 */
 	@Test
 	public void testRemoveOneElement() {
-		ArrayQueue<String> q = new ArrayQueue<String>();
+		ArrayQueue<String> q = new ArrayQueue<String>(CAPACITY);
 		q.enqueue("one");
 		assertEquals("one", q.dequeue());
 	}
@@ -64,7 +65,7 @@ public class ArrayQueueTest {
 	 */
 	@Test
 	public void testRemoveMultipleElements() {
-		ArrayQueue<String> q = new ArrayQueue<String>();
+		ArrayQueue<String> q = new ArrayQueue<String>(CAPACITY);
 		q.enqueue("one");
 		q.enqueue("two");
 		q.enqueue("three");
@@ -78,7 +79,7 @@ public class ArrayQueueTest {
 	 */
 	@Test
 	public void testRemoveLastElement() {
-		ArrayQueue<String> q = new ArrayQueue<String>();
+		ArrayQueue<String> q = new ArrayQueue<String>(CAPACITY);
 		q.enqueue("one");
 		q.enqueue("two");
 		q.enqueue("three");
@@ -94,7 +95,7 @@ public class ArrayQueueTest {
 	 */
 	@Test
 	public void testRemoveFromEmptyStack() {
-		ArrayQueue<String> q = new ArrayQueue<String>();
+		ArrayQueue<String> q = new ArrayQueue<String>(CAPACITY);
 		try {
 			q.dequeue();
 			fail();
@@ -108,7 +109,7 @@ public class ArrayQueueTest {
 	 */
 	@Test
 	public void testSetCapToSize() {
-		ArrayQueue<String> q = new ArrayQueue<String>();
+		ArrayQueue<String> q = new ArrayQueue<String>(CAPACITY);
 		try {
 			q.setCapacity(q.size());
 			assertTrue(q.isEmpty());
@@ -123,7 +124,7 @@ public class ArrayQueueTest {
 	 */
 	@Test
 	public void testSetInvalidCap() {
-		ArrayQueue<String> q = new ArrayQueue<String>();
+		ArrayQueue<String> q = new ArrayQueue<String>(CAPACITY);
 		q.enqueue("one");
 		q.enqueue("two");
 		try {
@@ -133,7 +134,7 @@ public class ArrayQueueTest {
 			assertEquals(2, q.size());
 		}
 
-		ArrayQueue<String> q2 = new ArrayQueue<String>();
+		ArrayQueue<String> q2 = new ArrayQueue<String>(CAPACITY);
 		q2.enqueue("one");
 		q2.enqueue("two");
 		try {
