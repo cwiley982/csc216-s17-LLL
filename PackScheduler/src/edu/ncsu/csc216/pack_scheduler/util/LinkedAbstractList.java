@@ -111,6 +111,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		if (size == 0) {
 			front = new ListNode(element, null);
 			back = front;
+		} else if (index == 0) {
+			front = new ListNode(element, front);
 		} else if (index == size() - 1) {
 			ListNode current = front;
 			for (int i = 0; i < size - 1; i++) {
