@@ -13,10 +13,8 @@ import org.junit.Test;
  * 
  * @author Caitlyn
  *
- * @param <E>
- *            the generic parameter so any object can be used
  */
-public class LinkedStackTest<E> {
+public class LinkedStackTest {
 
 	/**
 	 * Tests adding one element to the stack
