@@ -17,11 +17,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	/**
 	 * constructs an ArrayQueue
 	 */
-<<<<<<< HEAD
-	public ArrayQueue(int capacity){
-=======
-	public ArrayQueue(int capacity) {
->>>>>>> refs/remotes/origin/master
+    public ArrayQueue(int capacity){
 		this.list = new ArrayList<E>();
 		setCapacity(capacity);
 	}
