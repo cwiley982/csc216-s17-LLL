@@ -6,6 +6,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 import java.util.NoSuchElementException;
 
 /**
+ * Implements the Queue interface by using LinkedAbstractList
+ * 
  * @author lsiegel
  * @param <E>
  *
@@ -16,6 +18,9 @@ public class LinkedQueue<E> implements Queue<E> {
 	
 	/**
 	 * constructs a LinkedQueue
+	 * 
+	 * @param capacity
+	 *            the initial capacity of the queue
 	 */
 	public LinkedQueue(int capacity) {
 		this.list = new LinkedAbstractList<E>();
@@ -26,7 +31,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public void enqueue(E element) throws IllegalArgumentException {
-		this.list.add(element);
+		list.add(size(), element);
 	}
 	
 	/**
@@ -45,7 +50,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public boolean isEmpty() {
-		return this.list.isEmpty();
+		return list.isEmpty();
 	}
 	
 	/**
@@ -53,7 +58,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public int size() {
-		return this.list.size();
+		return list.size();
 	}
 	
 	/**
@@ -61,7 +66,10 @@ public class LinkedQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public void setCapacity(int capacity) throws IllegalArgumentException {
-		this.list.setCapacity(capacity);
+		if (capacity < 0 || capacity < size()) {
+			throw new IllegalArgumentException();
+		}
+		list.setCapacity(capacity);
 	}
 
 }

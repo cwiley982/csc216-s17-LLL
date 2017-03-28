@@ -6,9 +6,12 @@ package edu.ncsu.csc216.pack_scheduler.util;
 import java.util.NoSuchElementException;
 
 /**
- * @author Lauren
  * describes behavior for a queue
- * @param <E> element
+ * 
+ * @author Lauren
+ * 
+ * @param <E>
+ *            generic parameter
  */
 public interface Queue<E> {
 	

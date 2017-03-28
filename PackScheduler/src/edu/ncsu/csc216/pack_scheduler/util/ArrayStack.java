@@ -2,6 +2,13 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import java.util.EmptyStackException;
 
+/**
+ * Implements the Stack interface by using an ArrayList
+ * 
+ * @author Caitlyn
+ *
+ * @param <E>
+ */
 public class ArrayStack<E> implements Stack<E> {
 
 	private ArrayList<E> list;

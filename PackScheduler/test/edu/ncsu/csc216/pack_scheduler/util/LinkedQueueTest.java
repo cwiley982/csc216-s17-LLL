@@ -18,8 +18,10 @@ import org.junit.Test;
  *
  */
 public class LinkedQueueTest {
+
+	/** Used to set initial capacity of queues */
+	private static final int CAPACITY = 5;
 	
-	private static int CAPACITY = 5;
 	/**
 	 * Tests adding one element to the empty queue
 	 */
@@ -86,7 +88,7 @@ public class LinkedQueueTest {
 		assertEquals(3, q.size());
 		q.dequeue();
 		q.dequeue();
-		assertEquals("one", q.dequeue());
+		assertEquals("three", q.dequeue());
 		assertTrue(q.isEmpty());
 	}
 

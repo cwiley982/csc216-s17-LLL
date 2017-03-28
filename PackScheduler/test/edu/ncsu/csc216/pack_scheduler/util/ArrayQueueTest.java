@@ -86,7 +86,7 @@ public class ArrayQueueTest {
 		assertEquals(3, q.size());
 		q.dequeue();
 		q.dequeue();
-		assertEquals("one", q.dequeue());
+		assertEquals("three", q.dequeue());
 		assertTrue(q.isEmpty());
 	}
 

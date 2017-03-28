@@ -2,39 +2,59 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import java.util.EmptyStackException;
 
+/**
+ * Implements the Stack interface using LinkedAbstractList
+ * 
+ * @author Caitlyn
+ *
+ * @param <E>
+ */
 public class LinkedStack<E> implements Stack<E> {
 
+	private LinkedAbstractList<E> list;
+	/**
+	 * Constructs a LinkedStack and sets the initial capacity
+	 * 
+	 * @param capacity
+	 *            the initial capacity of the stack
+	 */
 	public LinkedStack(int capacity) {
-		// TODO Auto-generated constructor stub
+		list = new LinkedAbstractList<E>();
+		setCapacity(capacity);
 	}
 
 	@Override
 	public void push(E element) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-
+		// if (size() + 1 > capacity) { // TODO fix this
+		// throw new IllegalArgumentException();
+		// }
+		list.add(size(), element);
 	}
 
 	@Override
 	public E pop() throws EmptyStackException {
-		// TODO Auto-generated method stub
-		return null;
+		if (size() == 0) {
+			throw new EmptyStackException();
+		}
+		return (E) list.remove(size() - 1);
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return list.isEmpty();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return list.size();
 	}
 
 	@Override
 	public void setCapacity(int capacity) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
+		if (capacity < 0 || capacity < size()) {
+			throw new IllegalArgumentException();
+		}
+		list.setCapacity(capacity);
 
 	}
 
