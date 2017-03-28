@@ -9,35 +9,53 @@ package edu.ncsu.csc216.pack_scheduler.util;
  *
  */
 public class LinkedQueue<E> implements Queue<E> {
-
+	
+	private LinkedAbstractList<E> list;
+	
+	/**
+	 * constructs a LinkedQueue
+	 */
+	public LinkedQueue(){
+		this.list = new LinkedAbstractList<E>();
+	}
+	/**
+	 * adds an element to the back of the queue
+	 */
 	@Override
 	public void enqueue(E element) {
-		// TODO Auto-generated method stub
-		
+		this.list.add(element);
 	}
-
+	
+	/**
+	 * removes an element from the front of the queue and returns it
+	 */
 	@Override
 	public E dequeue() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.list.remove(0);
 	}
-
+	
+	/**
+	 * returns true if queue is empty, false if not
+	 */
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.list.isEmpty();
 	}
-
+	
+	/**
+	 * returns the size of the queue
+	 */
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.list.size();
 	}
-
+	
+	/**
+	 * sets the capacity of the queue
+	 */
 	@Override
 	public void setCapacity(int capacity) {
-		// TODO Auto-generated method stub
-		
+		this.list.setCapacity(capacity);
 	}
 
 }
