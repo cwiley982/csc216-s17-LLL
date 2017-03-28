@@ -15,8 +15,9 @@ public class LinkedQueue<E> implements Queue<E> {
 	/**
 	 * constructs a LinkedQueue
 	 */
-	public LinkedQueue(){
+	public LinkedQueue(int capacity){
 		this.list = new LinkedAbstractList<E>();
+		setCapacity(capacity);
 	}
 	/**
 	 * adds an element to the back of the queue
