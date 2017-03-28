@@ -1,6 +1,9 @@
 package edu.ncsu.csc216.pack_scheduler.course.roll;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -142,14 +145,14 @@ public class CourseRollTest {
 		r.enroll(g);
 		r.enroll(h);
 		r.enroll(i);
-		r.enroll(k);
+		r.enroll(j);
 		assertEquals(r.getOpenSeats(), 0);
 		
 		try {
 			r.enroll(k);
+			assertEquals(1, r.getNumberOnWaitlist());
+		} catch (IllegalArgumentException e) {
 			fail();
-		} catch(IllegalArgumentException e) {
-			assertEquals(r.getOpenSeats(), 0);
 		}
 
 		

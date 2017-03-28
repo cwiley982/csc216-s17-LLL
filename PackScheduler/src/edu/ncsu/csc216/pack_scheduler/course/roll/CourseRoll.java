@@ -66,7 +66,7 @@ public class CourseRoll {
 	 * @throws IllegalArgumentException if s is null or if there are no more open seats or if s is already enrolled
 	 */
 	public void enroll(Student s) {
-		if(s == null || getOpenSeats() <= 0) {
+		if (s == null || getOpenSeats() < 0) {
 			throw new IllegalArgumentException();
 		}
 		for(int i = 0; i < roll.size(); i++) {
@@ -74,13 +74,13 @@ public class CourseRoll {
 				throw new IllegalArgumentException();
 			}
 		}
-		if(this.roll.size() < this.enrollmentCap){
-			this.roll.add(s);
+		if (roll.size() < enrollmentCap) {
+			roll.add(s);
 		} else {
-			if(this.waitlist.size() == MIN_ENROLLMENT){
+			if (waitlist.size() == MIN_ENROLLMENT) {
 				throw new IllegalArgumentException();
 			} else {
-				this.waitlist.enqueue(s);
+				waitlist.enqueue(s);
 			}
 		}
 	}
