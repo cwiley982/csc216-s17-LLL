@@ -17,11 +17,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	/**
 	 * constructs an ArrayQueue
 	 */
-<<<<<<< HEAD
 	public ArrayQueue(int capacity) {
-=======
-	public ArrayQueue(int capacity){
->>>>>>> branch 'master' of https://github.ncsu.edu/engr-csc216-spring2017/csc216-212-LLL-4.git
 		this.list = new ArrayList<E>();
 		setCapacity(capacity);
 	}
