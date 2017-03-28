@@ -144,7 +144,7 @@ public class CourseRollTest {
 		r.enroll(i);
 		r.enroll(k);
 		assertEquals(r.getOpenSeats(), 0);
-		
+		assertEquals(r.getNumberOnWaitlist(), 0);
 		try {
 			r.enroll(k);
 			fail();
@@ -172,7 +172,7 @@ public class CourseRollTest {
 		r.enroll(a);
 		r.enroll(b);
 		r.enroll(c);
-		
+		assertEquals(0, r.getNumberOnWaitlist());
 		r.drop(d);
 		assertEquals(r.getOpenSeats(), 7);
 		
