@@ -21,7 +21,7 @@ public class ArrayStackTest {
 	 */
 	@Test
 	public void testAddOneElement() {
-		ArrayStack<String> stack = new ArrayStack<String>();
+		ArrayStack<String> stack = new ArrayStack<String>(10);
 		try {
 			stack.push("hello");
 			assertEquals(1, stack.size());
@@ -35,7 +35,7 @@ public class ArrayStackTest {
 	 */
 	@Test
 	public void testAddMultipleElements() {
-		ArrayStack<String> stack = new ArrayStack<String>();
+		ArrayStack<String> stack = new ArrayStack<String>(10);
 		try {
 			stack.push("one");
 			stack.push("two");
@@ -51,7 +51,7 @@ public class ArrayStackTest {
 	 */
 	@Test
 	public void testRemoveOneElement() {
-		ArrayStack<String> stack = new ArrayStack<String>();
+		ArrayStack<String> stack = new ArrayStack<String>(10);
 		stack.push("one");
 		assertEquals("one", stack.pop());
 	}
@@ -61,7 +61,7 @@ public class ArrayStackTest {
 	 */
 	@Test
 	public void testRemoveMultipleElements() {
-		ArrayStack<String> stack = new ArrayStack<String>();
+		ArrayStack<String> stack = new ArrayStack<String>(10);
 		stack.push("one");
 		stack.push("two");
 		stack.push("three");
@@ -75,7 +75,7 @@ public class ArrayStackTest {
 	 */
 	@Test
 	public void testRemoveLastElement() {
-		ArrayStack<String> stack = new ArrayStack<String>();
+		ArrayStack<String> stack = new ArrayStack<String>(10);
 		stack.push("one");
 		stack.push("two");
 		stack.push("three");
@@ -91,7 +91,7 @@ public class ArrayStackTest {
 	 */
 	@Test
 	public void testRemoveFromEmptyStack() {
-		ArrayStack<String> stack = new ArrayStack<String>();
+		ArrayStack<String> stack = new ArrayStack<String>(10);
 		try {
 			stack.pop();
 			fail();
@@ -105,7 +105,7 @@ public class ArrayStackTest {
 	 */
 	@Test
 	public void testSetCapToSize() {
-		ArrayStack<String> stack = new ArrayStack<String>();
+		ArrayStack<String> stack = new ArrayStack<String>(10);
 		try {
 			stack.setCapacity(stack.size());
 			assertTrue(stack.isEmpty());
@@ -120,7 +120,7 @@ public class ArrayStackTest {
 	 */
 	@Test
 	public void testSetInvalidCap() {
-		ArrayStack<String> stack = new ArrayStack<String>();
+		ArrayStack<String> stack = new ArrayStack<String>(10);
 		stack.push("one");
 		stack.push("two");
 		try {
@@ -130,7 +130,7 @@ public class ArrayStackTest {
 			assertEquals(2, stack.size());
 		}
 
-		ArrayStack<String> stack2 = new ArrayStack<String>();
+		ArrayStack<String> stack2 = new ArrayStack<String>(10);
 		stack2.push("one");
 		stack2.push("two");
 		try {

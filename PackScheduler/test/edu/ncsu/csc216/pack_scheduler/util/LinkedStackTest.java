@@ -21,7 +21,7 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testAddOneElement() {
-		LinkedStack<String> stack = new LinkedStack<String>();
+		LinkedStack<String> stack = new LinkedStack<String>(10);
 		try {
 			stack.push("hello");
 			assertEquals(1, stack.size());
@@ -35,7 +35,7 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testAddMultipleElements() {
-		LinkedStack<String> stack = new LinkedStack<String>();
+		LinkedStack<String> stack = new LinkedStack<String>(10);
 		try {
 			stack.push("one");
 			stack.push("two");
@@ -51,7 +51,7 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testRemoveOneElement() {
-		LinkedStack<String> stack = new LinkedStack<String>();
+		LinkedStack<String> stack = new LinkedStack<String>(10);
 		stack.push("one");
 		assertEquals("one", stack.pop());
 	}
@@ -61,7 +61,7 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testRemoveMultipleElements() {
-		LinkedStack<String> stack = new LinkedStack<String>();
+		LinkedStack<String> stack = new LinkedStack<String>(10);
 		stack.push("one");
 		stack.push("two");
 		stack.push("three");
@@ -75,7 +75,7 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testRemoveLastElement() {
-		LinkedStack<String> stack = new LinkedStack<String>();
+		LinkedStack<String> stack = new LinkedStack<String>(10);
 		stack.push("one");
 		stack.push("two");
 		stack.push("three");
@@ -91,7 +91,7 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testRemoveFromEmptyStack() {
-		LinkedStack<String> stack = new LinkedStack<String>();
+		LinkedStack<String> stack = new LinkedStack<String>(10);
 		try {
 			stack.pop();
 			fail();
@@ -105,7 +105,7 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testSetCapToSize() {
-		LinkedStack<String> stack = new LinkedStack<String>();
+		LinkedStack<String> stack = new LinkedStack<String>(10);
 		try {
 			stack.setCapacity(stack.size());
 			assertTrue(stack.isEmpty());
@@ -120,7 +120,7 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testSetInvalidCap() {
-		LinkedStack<String> stack = new LinkedStack<String>();
+		LinkedStack<String> stack = new LinkedStack<String>(10);
 		stack.push("one");
 		stack.push("two");
 		try {
@@ -130,7 +130,7 @@ public class LinkedStackTest {
 			assertEquals(2, stack.size());
 		}
 
-		LinkedStack<String> stack2 = new LinkedStack<String>();
+		LinkedStack<String> stack2 = new LinkedStack<String>(10);
 		stack2.push("one");
 		stack2.push("two");
 		try {
