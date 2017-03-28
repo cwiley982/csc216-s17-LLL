@@ -90,13 +90,16 @@ public class CourseRoll {
 	 * @throws IllegalArgumentException if s is null
 	 */
 	public void drop(Student s) {
-		if(s == null) {
+		if (s == null) {
 			throw new IllegalArgumentException();
 		}
-		for(int i = 0; i < roll.size(); i++) {
+		int rollSize = roll.size();
+		for (int i = 0; i < rollSize; i++) {
 			if(s.equals(roll.get(i))) {
 				roll.remove(i);
-				roll.add(waitlist.dequeue());
+				if (waitlist.size() != 0) {
+					roll.add(waitlist.dequeue());
+				}
 				break;
 			}
 		}
