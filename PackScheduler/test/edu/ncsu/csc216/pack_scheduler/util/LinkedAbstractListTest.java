@@ -54,11 +54,24 @@ public class LinkedAbstractListTest {
 		LinkedAbstractList<String> list = new LinkedAbstractList<String>(10);
 		assertEquals(0, list.size());
 		//add an element and then test that when we have that functionality
+		list.setCapacity(4);
 		list.add(0, "Hi");
 		assertEquals(1, list.size());
 		list.add(1, "Yo");
 		list.add(2, "Hello");
 		assertEquals(3, list.size());
+		try{
+			list.setCapacity(2);
+			fail();
+		} catch (IllegalArgumentException e){
+			assertEquals(3, list.size());
+		}
+		try{
+			list.setCapacity(-1);
+			fail();
+		} catch (IllegalArgumentException e){
+			assertEquals(3, list.size());
+		}
 	}
 	/**
 	 * Tests the add method of the Linked List

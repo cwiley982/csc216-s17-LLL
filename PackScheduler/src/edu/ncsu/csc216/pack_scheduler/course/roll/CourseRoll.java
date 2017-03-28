@@ -40,6 +40,7 @@ public class CourseRoll {
 			throw new IllegalArgumentException("The enrollment cap you entered is invalid.");
 		}
 		this.enrollmentCap = cap;
+		this.roll.setCapacity(cap);
 	}
 
 	/**

@@ -29,11 +29,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 */
 	public LinkedAbstractList(int capacity) {
 		size = 0;
-		if (capacity > 0) {
-			this.capacity = capacity;
-		} else {
-			throw new IllegalArgumentException();
-		}
+		setCapacity(capacity);
 		front = null;
 	}
 
@@ -44,6 +40,17 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		size = 0;
 		capacity = 0;
 		front = null;
+	}
+	
+	/**
+	 * sets the capacity of the list
+	 * @param capacity capacity of the list
+	 */
+	public void setCapacity(int capacity){
+		if(capacity < 0 || capacity < this.size){
+			throw new IllegalArgumentException();
+		}
+		this.capacity = capacity;
 	}
 
 	/**
