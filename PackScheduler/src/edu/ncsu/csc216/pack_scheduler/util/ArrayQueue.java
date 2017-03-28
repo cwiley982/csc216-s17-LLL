@@ -29,7 +29,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public void enqueue(E element) throws IllegalArgumentException {
-		if (size() > this.capacity) {
+		if (size() + 1 > this.capacity) {
 			throw new IllegalArgumentException();
 		}
 		list.add(this.size(), element);
