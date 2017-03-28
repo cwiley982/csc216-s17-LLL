@@ -1,7 +1,9 @@
 package edu.ncsu.csc216.pack_scheduler.course.roll;
 
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedQueue;
 /**
  * Class that handles operations of a course roll, including adding dropping and increasing its capacity
  * @author Sam
@@ -10,16 +12,22 @@ public class CourseRoll {
 	
 	private LinkedAbstractList<Student> roll;
 	private int enrollmentCap;
+	private LinkedQueue<Student> waitlist;
 	private static final int MIN_ENROLLMENT = 10;
 	private static final int MAX_ENROLLMENT = 250;
 	
 	/**
 	 * Constructor for CourseRoll
 	 * @param cap the maximum capacity to set.
+	 * @param c that CourseRoll is associated with
 	 */
-	public CourseRoll(int cap) {
+	public CourseRoll(Course c, int cap) {
+		if(c == null){
+			throw new IllegalArgumentException();
+		}
 		roll = new LinkedAbstractList<Student>(250);
 		setEnrollmentCap(cap);
+		this.waitlist = new LinkedQueue<Student>(MIN_ENROLLMENT);
 	}
 
 	/**
@@ -66,7 +74,15 @@ public class CourseRoll {
 				throw new IllegalArgumentException();
 			}
 		}
-		roll.add(roll.size(), s);
+		if(this.roll.size() < this.enrollmentCap){
+			this.roll.add(s);
+		} else {
+			if(this.waitlist.size() == MIN_ENROLLMENT){
+				throw new IllegalArgumentException();
+			} else {
+				this.waitlist.enqueue(s);
+			}
+		}
 	}
 	/**
 	 * Method that removes a student from a roll
@@ -83,8 +99,26 @@ public class CourseRoll {
 				break;
 			}
 		}
+		int listSize = waitlist.size();
+		for(int i = 0; i < listSize ; i++){
+			Student student = waitlist.dequeue();
+			if(!student.equals(s)){
+				waitlist.enqueue(student);
+			}
+		}
+		if(roll.size() == this.enrollmentCap - 1){
+			Student student = waitlist.dequeue();
+			roll.add(student);
+		}
 	}
 	
+	/**
+	 * returns the number of students on the waitlist
+	 * @return size of waitlist
+	 */
+	public int getNumberOnWaitlist(){
+		return this.waitlist.size();
+	}
 	/**
 	 * True if a student can enroll false otherwise
 	 * @param s the student to test

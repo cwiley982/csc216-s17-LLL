@@ -55,7 +55,7 @@ public class Course extends Activity implements Comparable<Course>
 	{
 		super(title, meetingDays, startTime, endTime);
 		validator = new CourseNameValidator();
-		roll = new CourseRoll(enrollmentCap);
+		roll = new CourseRoll(this, enrollmentCap);
 		setName(name);
 		setSection(section);
 		setCredits(credits);
