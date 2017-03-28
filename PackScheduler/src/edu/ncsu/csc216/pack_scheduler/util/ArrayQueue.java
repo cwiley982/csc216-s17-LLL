@@ -8,36 +8,60 @@ package edu.ncsu.csc216.pack_scheduler.util;
  * @param <E>
  *
  */
-public class ArrayQueue<E> implements Queue<E>{
-
-	@Override
-	public void enqueue(Object element) {
-		// TODO Auto-generated method stub
-		
+public class ArrayQueue<E> implements Queue<E> {
+	
+	private ArrayList<E> list;
+	
+	private int capacity;
+	
+	/**
+	 * constructs an ArrayQueue
+	 */
+	public ArrayQueue(){
+		this.list = new ArrayList<E>();
 	}
-
+	
+	/**
+	 * adds an element to the back of the queue
+	 */
+	@Override
+	public void enqueue(E element) {
+		if(this.size() == this.capacity){
+			throw new IllegalArgumentException();
+		}
+		this.list.add(this.size()-1, element);
+	}
+	
+	/**
+	 * removes an element from the front of the queue and returns it
+	 */
 	@Override
 	public E dequeue() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.list.remove(0);
 	}
-
+	
+	/**
+	 * returns true if list is empty, false if not
+	 */
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.list.isEmpty();
 	}
-
+	
+	/**
+	 * returns the size of the queue
+	 */
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.list.size();
 	}
 
 	@Override
 	public void setCapacity(int capacity) {
-		// TODO Auto-generated method stub
-		
+		if(capacity < 0 || capacity < this.size()){
+			throw new IllegalArgumentException();
+		}
+		this.capacity = capacity;
 	}
 
 }
