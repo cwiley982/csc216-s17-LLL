@@ -20,6 +20,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	private int capacity;
 	/** the first node in the list */
 	private ListNode front;
+	/** the last node in the list */
+	private ListNode back;
 
 	/**
 	 * Constructs a linked abstract list and initializes the states
@@ -31,6 +33,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		size = 0;
 		setCapacity(capacity);
 		front = null;
+		this.back = null;
 	}
 
 	/**
@@ -106,9 +109,13 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			}
 			currentCheck = currentCheck.next;
 		}
-		
-		if (index == 0) {
+		if(size == 0){
+			front = new ListNode(element, null);
+			back = this.front;
+	    }  else if (index == 0) {
 			front = new ListNode(element, front);
+		}  else if (index == this.size() - 1){
+			this.back = new ListNode(element, null);
 		} else {
 			ListNode current = front;
 			for (int i = 0; i < index - 1; i++) {
@@ -213,6 +220,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			}
 			removedNode = current.next;
 			current.next = current.next.next;
+			if(index == this.size() -1){
+				this.back = current;
+			}
 		}
 		size--;
 		return removedNode.data;
