@@ -15,11 +15,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	/**
 	 * constructs a LinkedQueue
 	 */
-<<<<<<< HEAD
 	public LinkedQueue(int capacity) {
-=======
-	public LinkedQueue(int capacity){
->>>>>>> branch 'master' of https://github.ncsu.edu/engr-csc216-spring2017/csc216-212-LLL-4.git
 		this.list = new LinkedAbstractList<E>();
 		setCapacity(capacity);
 	}
