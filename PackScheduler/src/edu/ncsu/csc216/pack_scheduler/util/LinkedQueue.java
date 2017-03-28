@@ -3,6 +3,8 @@
  */
 package edu.ncsu.csc216.pack_scheduler.util;
 
+import java.util.NoSuchElementException;
+
 /**
  * @author lsiegel
  * @param <E>
@@ -23,7 +25,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	 * adds an element to the back of the queue
 	 */
 	@Override
-	public void enqueue(E element) {
+	public void enqueue(E element) throws IllegalArgumentException {
 		this.list.add(element);
 	}
 	
@@ -31,8 +33,11 @@ public class LinkedQueue<E> implements Queue<E> {
 	 * removes an element from the front of the queue and returns it
 	 */
 	@Override
-	public E dequeue() {
-		return this.list.remove(0);
+	public E dequeue() throws NoSuchElementException {
+		if (size() == 0) {
+			throw new NoSuchElementException();
+		}
+		return list.remove(0);
 	}
 	
 	/**
@@ -55,7 +60,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	 * sets the capacity of the queue
 	 */
 	@Override
-	public void setCapacity(int capacity) {
+	public void setCapacity(int capacity) throws IllegalArgumentException {
 		this.list.setCapacity(capacity);
 	}
 

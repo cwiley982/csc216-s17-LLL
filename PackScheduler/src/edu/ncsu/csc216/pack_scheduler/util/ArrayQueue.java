@@ -3,6 +3,8 @@
  */
 package edu.ncsu.csc216.pack_scheduler.util;
 
+import java.util.NoSuchElementException;
+
 /**
  * @author lsiegel
  * @param <E>
@@ -26,19 +28,22 @@ public class ArrayQueue<E> implements Queue<E> {
 	 * adds an element to the back of the queue
 	 */
 	@Override
-	public void enqueue(E element) {
-		if(this.size() == this.capacity){
+	public void enqueue(E element) throws IllegalArgumentException {
+		if (size() > this.capacity) {
 			throw new IllegalArgumentException();
 		}
-		this.list.add(this.size()-1, element);
+		list.add(this.size(), element);
 	}
 	
 	/**
 	 * removes an element from the front of the queue and returns it
 	 */
 	@Override
-	public E dequeue() {
-		return this.list.remove(0);
+	public E dequeue() throws NoSuchElementException {
+		if (size() == 0) {
+			throw new NoSuchElementException();
+		}
+		return list.remove(0);
 	}
 	
 	/**
@@ -46,7 +51,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public boolean isEmpty() {
-		return this.list.isEmpty();
+		return list.isEmpty();
 	}
 	
 	/**
@@ -54,12 +59,12 @@ public class ArrayQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public int size() {
-		return this.list.size();
+		return list.size();
 	}
 
 	@Override
-	public void setCapacity(int capacity) {
-		if(capacity < 0 || capacity < this.size()){
+	public void setCapacity(int capacity) throws IllegalArgumentException {
+		if (capacity < 0 || capacity < size()) {
 			throw new IllegalArgumentException();
 		}
 		this.capacity = capacity;
