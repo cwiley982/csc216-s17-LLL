@@ -6,6 +6,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 import java.util.NoSuchElementException;
 
 /**
+ * Implements Queue interface with an ArrayList
+ * 
  * @author lsiegel
  * @param <E>
  *
@@ -18,6 +20,9 @@ public class ArrayQueue<E> implements Queue<E> {
 	
 	/**
 	 * constructs an ArrayQueue
+	 * 
+	 * @param capacity
+	 *            the initial capacity of the queue
 	 */
     public ArrayQueue(int capacity){
 		this.list = new ArrayList<E>();

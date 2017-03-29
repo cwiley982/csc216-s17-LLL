@@ -224,7 +224,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			}
 			removedNode = current.next;
 			current.next = current.next.next;
-			if(index == this.size() -1){
+			if (index == this.size() - 1) {
 				this.back = current;
 			}
 		}
