@@ -84,10 +84,10 @@ public class CourseRoll {
 			}
 		}
 	}
+
 	/**
 	 * Method that removes a student from a roll
 	 * @param s the student to remove
-	 * @throws IllegalArgumentException if s is null
 	 */
 	public void drop(Student s) {
 		if (s == null) {
@@ -104,8 +104,8 @@ public class CourseRoll {
 			}
 		}
 
-		int listSize = waitlist.size();
-		for (int i = 0; i < listSize; i++) {
+		int waitlistSize = waitlist.size();
+		for (int i = 0; i < waitlistSize; i++) {
 			Student student = waitlist.dequeue(); // remove student
 			if(!student.equals(s)){
 				waitlist.enqueue(student); // add back if not student trying to
@@ -119,7 +119,7 @@ public class CourseRoll {
 	 * @return size of waitlist
 	 */
 	public int getNumberOnWaitlist(){
-		return this.waitlist.size();
+		return waitlist.size();
 	}
 	/**
 	 * True if a student can enroll false otherwise
@@ -128,14 +128,14 @@ public class CourseRoll {
 	 * @throws IllegalArgumentException if s is null
 	 */
 	public boolean canEnroll(Student s) {
-		if(s == null){
+		if (s == null) {
 			throw new IllegalArgumentException();
 		}
-		if(getOpenSeats() <= 0) {
+		if (getOpenSeats() <= 0) {
 			return false;
 		}
-		for(int i = 0; i < roll.size(); i++) {
-			if(s.equals(roll.get(i))) {
+		for (int i = 0; i < roll.size(); i++) {
+			if (s.equals(roll.get(i))) {
 				return false;
 			}
 		}
