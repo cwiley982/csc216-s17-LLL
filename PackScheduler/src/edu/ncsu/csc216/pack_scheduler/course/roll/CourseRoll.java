@@ -13,6 +13,7 @@ public class CourseRoll {
 	private LinkedAbstractList<Student> roll;
 	private int enrollmentCap;
 	private LinkedQueue<Student> waitlist;
+	private Course course;
 	private static final int MIN_ENROLLMENT = 10;
 	private static final int MAX_ENROLLMENT = 250;
 	
@@ -28,6 +29,7 @@ public class CourseRoll {
 		roll = new LinkedAbstractList<Student>(250);
 		setEnrollmentCap(cap);
 		this.waitlist = new LinkedQueue<Student>(MIN_ENROLLMENT);
+		this.course = c;
 	}
 
 	/**
@@ -76,6 +78,7 @@ public class CourseRoll {
 		}
 		if (roll.size() < enrollmentCap) {
 			roll.add(s);
+			s.getSchedule().addCourseToSchedule(course);
 		} else {
 			if (waitlist.size() == MIN_ENROLLMENT) {
 				throw new IllegalArgumentException();
