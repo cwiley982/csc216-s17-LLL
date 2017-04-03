@@ -213,7 +213,7 @@ public class CourseRollTest {
 		r.enroll(i);
 		assertTrue(r.canEnroll(l));
 		r.enroll(j);
-		assertFalse(r.canEnroll(l));
+		assertTrue(r.canEnroll(l));
 	}
 
 }

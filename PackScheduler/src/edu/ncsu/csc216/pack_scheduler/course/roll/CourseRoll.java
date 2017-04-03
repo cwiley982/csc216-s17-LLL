@@ -131,12 +131,25 @@ public class CourseRoll {
 		if (s == null) {
 			throw new IllegalArgumentException();
 		}
-		if (getOpenSeats() <= 0) {
+		if (getOpenSeats() < 0) {
+			return false;
+		}
+		if(this.waitlist.size() == MIN_ENROLLMENT){
 			return false;
 		}
 		for (int i = 0; i < roll.size(); i++) {
 			if (s.equals(roll.get(i))) {
 				return false;
+			}
+		}
+		int size = waitlist.size();
+		for(int i = 0; i < size; i++){
+			Student student = waitlist.dequeue();
+			if(s.equals(student)){
+				waitlist.enqueue(student);
+				return false;
+			} else {
+				waitlist.enqueue(student);
 			}
 		}
 		return true;
