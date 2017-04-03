@@ -108,19 +108,19 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			}
 			currentCheck = currentCheck.next;
 		}
-		if (size == 0) {
+		if (size == 0) { // first element
 			front = new ListNode(element, null);
 			back = front;
-		} else if (index == 0) {
+		} else if (index == 0) { // adding to front
 			front = new ListNode(element, front);
-		} else if (index == size() - 1) {
+		} else if (index == size()) { // adding to back
 			ListNode current = front;
-			for (int i = 0; i < size - 1; i++) {
+			for (int i = 0; i < size() - 1; i++) {
 				current = current.next;
 			}
-			current.next = back;
-			back = new ListNode(element, null);
-		} else {
+			current.next = new ListNode(element, null);
+			back = current.next;
+		} else { // adding to middle
 			ListNode current = front;
 			for (int i = 0; i < index - 1; i++) {
 				current = current.next;
