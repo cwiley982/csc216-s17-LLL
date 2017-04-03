@@ -101,7 +101,7 @@ public class CourseRoll {
 			if(s.equals(roll.get(i))) {
 				roll.remove(i);
 				if (waitlist.size() != 0) {
-					roll.add(waitlist.dequeue());
+					enroll(waitlist.dequeue());
 				}
 				break;
 			}
