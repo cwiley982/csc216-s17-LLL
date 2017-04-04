@@ -16,7 +16,7 @@ public class Faculty extends User {
 	 * Constructs a faculty object
 	 * @param firstName first name
 	 * @param lastName last name
-	 * @param id ID number
+	 * @param id ID
 	 * @param email email
 	 * @param password password
 	 * @param courses max number of courses

@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
@@ -24,6 +25,8 @@ public class RegistrationManager {
 	private CourseCatalog courseCatalog;
 	/**the instance of student directory*/
 	private StudentDirectory studentDirectory;
+	/** the instance of Faculty directory */
+	private FacultyDirectory facultyDirectory;
 	/**the instance of user*/
 	private User registrar;
 	/**the current user*/
@@ -145,6 +148,14 @@ public class RegistrationManager {
 	 */
 	public User getCurrentUser() { 
 		return currentUser;
+	}
+	
+	/**
+	 * returns the Faculty directory
+	 * @return FacultyDirectory
+	 */
+	public FacultyDirectory getFacultyDirectory() {
+		return this.facultyDirectory;
 	}
 
 	/**
