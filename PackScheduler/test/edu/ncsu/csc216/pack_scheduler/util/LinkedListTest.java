@@ -3,6 +3,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.NoSuchElementException;
+
 import org.junit.Test;
 
 /**
@@ -73,7 +75,7 @@ public class LinkedListTest {
 		try {
 			list.add(1, null);
 			fail();
-		} catch (NullPointerException e) {
+		} catch (NoSuchElementException e) {
 			// skip
 		}
 		// add at the beginning

@@ -20,7 +20,8 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 
 	@Override
 	public ListIterator<E> listIterator(int index) {
-		return new LinkedListIterator(index);
+		LinkedListIterator listIterator = new LinkedListIterator(index);
+		return listIterator;
 	}
 
 	@Override
@@ -28,15 +29,50 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		return size;
 	}
 
+	@Override
+	public void add(int index, E element) {
+		if (contains(element)) {
+			throw new IllegalArgumentException();
+		}
+		listIterator(index).add(element);
+	}
+
+	/**
+	 * Creates ListNodes to be referenced in ListIterator
+	 * 
+	 * @author Caitlyn
+	 *
+	 */
 	private class ListNode {
+		/** data contained in the list node */
 		private E data;
+		/** the ListNode after the current one */
 		private ListNode next;
+		/** The ListNode before the current one */
 		private ListNode prev;
 
+		/**
+		 * Constructs a ListNode with just data, usually only used for the first
+		 * node in the list
+		 * 
+		 * @param data
+		 *            the data held in the node
+		 */
 		public ListNode(E data) {
 			this.data = data;
 		}
 
+		/**
+		 * Constructs a ListNode with certain data and sets the references to
+		 * the next and previous nodes
+		 * 
+		 * @param data
+		 *            data held in the node
+		 * @param prev
+		 *            previous node
+		 * @param next
+		 *            next node
+		 */
 		public ListNode(E data, ListNode prev, ListNode next) {
 			this.data = data;
 			this.prev = prev;
@@ -44,11 +80,23 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		}
 	}
 
+	/**
+	 * Creates a LinkedListIterator that will sit between nodes and be doubly
+	 * linked so it can traverse the list forwards and backwards
+	 * 
+	 * @author Caitlyn
+	 *
+	 */
 	private class LinkedListIterator implements ListIterator<E> {
+		/** Node before where the iterator is */
 		private ListNode previous;
+		/** Node after where the iterator is */
 		private ListNode next;
+		/** Index of previous node */
 		private int previousIndex;
+		/** Index of next node */
 		private int nextIndex;
+		/** Last node retrieved using next() or previous() methods */
 		private ListNode lastRetrieved;
 
 		public LinkedListIterator(int index) {
@@ -71,7 +119,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			if (element == null) {
 				throw new NullPointerException();
 			}
-			previous = new ListNode(element);
+			ListNode newNode = new ListNode(element, previous, next);
+			previous.next = newNode;
+			next.prev = newNode;
+			previous = newNode;
 			previousIndex++;
 			nextIndex++;
 			lastRetrieved = null;
