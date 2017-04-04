@@ -31,7 +31,7 @@ public class FacultyRecordIO {
 	 * @return a list of Faculty
 	 * @throws FileNotFoundException if the file cannot be found or read
 	 */
-	public static LinkedList<Faculty> readStudentRecords(String fileName) throws FileNotFoundException {
+	public static LinkedList<Faculty> readFacultyRecords(String fileName) throws FileNotFoundException {
 		LinkedList<Faculty> faculty = new LinkedList<Faculty>();
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));
 		if (fileName == null || fileName.equals(""))
@@ -41,7 +41,7 @@ public class FacultyRecordIO {
 		}
 		while(fileReader.hasNextLine()){
 			try{
-				faculty.add(processStudent(fileReader.nextLine()));
+				faculty.add(processFaculty(fileReader.nextLine()));
 			} catch(IllegalArgumentException e){
 				//skip the line
 			}
@@ -49,7 +49,7 @@ public class FacultyRecordIO {
 		fileReader.close();
 		return faculty;
 	}
-	private static Faculty processStudent(String line){
+	private static Faculty processFaculty(String line){
 		Scanner lineReader = new Scanner(line);
 		lineReader.useDelimiter(",");
 		String firstName, lastName, id, email, password;
@@ -77,7 +77,7 @@ public class FacultyRecordIO {
 	 * @param facultyDirectory LinkedList containing the faculties
 	 * @throws IOException if unable to write to the file
 	 */
-	public static void writeStudentRecords(String fileName, LinkedList<Faculty> facultyDirectory) throws IOException {
+	public static void writeFacultyRecords(String fileName, LinkedList<Faculty> facultyDirectory) throws IOException {
 		PrintStream fileWriter = new PrintStream(new File(fileName));
 		for(int i = 0; i < facultyDirectory.size(); i++){
 			fileWriter.println(facultyDirectory.get(i).toString());
