@@ -3,7 +3,12 @@
  */
 package edu.ncsu.csc216.pack_scheduler.directory;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ListIterator;
+
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
+import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 
 /**
@@ -14,7 +19,7 @@ import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 public class FacultyDirectory {
 	
 	/** linked list of faculty in the system */
-	private LinkedList facultyDirectory;
+	private LinkedList<Faculty> facultyDirectory;
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
 	
@@ -60,8 +65,34 @@ public class FacultyDirectory {
 	 * @return boolean true if added, false if not
 	 */
 	public boolean addFaculty(String firstName, String lastName, String id, String email, String password, String repeatPassword, int maxCourses) {
+		String hashPW = "";
+		String repeatHashPW = "";
+		if (password == null || repeatPassword == null || password.equals("") || repeatPassword.equals("")) {
+			throw new IllegalArgumentException("Invalid password");
+		}
+		try {
+			MessageDigest digest1 = MessageDigest.getInstance(HASH_ALGORITHM);
+			digest1.update(password.getBytes());
+			hashPW = new String(digest1.digest());
+			
+			MessageDigest digest2 = MessageDigest.getInstance(HASH_ALGORITHM);
+			digest2.update(repeatPassword.getBytes());
+			repeatHashPW = new String(digest2.digest());
+		} catch (NoSuchAlgorithmException e) {
+			throw new IllegalArgumentException("Cannot hash password");
+		}
+		
+		if (!hashPW.equals(repeatHashPW)) {
+			throw new IllegalArgumentException("Passwords do not match");
+		}
 		Faculty faculty = new Faculty(firstName, lastName, id, email, password, maxCourses);
-		return false;
+		for (int i = 0; i < facultyDirectory.size(); i++) {
+			User s = facultyDirectory.get(i);
+			if (s.getId().equals(faculty.getId())) {
+				return false;
+			}
+		}
+		return facultyDirectory.add(faculty);
 	}
 	
 	/**
@@ -70,6 +101,13 @@ public class FacultyDirectory {
 	 * @return true if removed, false if not
 	 */
 	public boolean removeFaculty(String id) {
+		for (int i = 0; i < facultyDirectory.size(); i++) {
+			User s = facultyDirectory.get(i);
+			if (s.getId().equals(id)) {
+				facultyDirectory.remove(i);
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -79,6 +117,11 @@ public class FacultyDirectory {
 	 * @return Faculty object
 	 */
 	public Faculty getFacultyById(String id) {
+		for(int i = 0; i < facultyDirectory.size(); i++){
+			if(facultyDirectory.get(i).getId().equals(id)){
+				return facultyDirectory.get(i);
+			}
+		}
 		return null;
 	}
 	
@@ -87,6 +130,13 @@ public class FacultyDirectory {
 	 * @return String array of Faculty in directory
 	 */
 	public String[][] getFacultyDirectory() {
-		return null;
+		String [][] directory = new String[facultyDirectory.size()][3];
+		for (int i = 0; i < facultyDirectory.size(); i++) {
+			User s = facultyDirectory.get(i);
+			directory[i][0] = s.getFirstName();
+			directory[i][1] = s.getLastName();
+			directory[i][2] = s.getId();
+		}
+		return directory;
 	}
 }
