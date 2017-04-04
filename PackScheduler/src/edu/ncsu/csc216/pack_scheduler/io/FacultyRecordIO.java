@@ -8,10 +8,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 
 
 /**
