@@ -60,6 +60,7 @@ public class FacultyDirectory {
 	 * @return boolean true if added, false if not
 	 */
 	public boolean addFaculty(String firstName, String lastName, String id, String email, String password, String repeatPassword, int maxCourses) {
+		Faculty faculty = new Faculty(firstName, lastName, id, email, password, maxCourses);
 		return false;
 	}
 	
