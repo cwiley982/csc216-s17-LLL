@@ -44,7 +44,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	 *
 	 */
 	private class ListNode {
-		/** data contained in the list node */
+		/** data contained in the current list node */
 		private E data;
 		/** the ListNode after the current one */
 		private ListNode next;
