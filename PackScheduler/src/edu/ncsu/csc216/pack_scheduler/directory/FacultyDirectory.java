@@ -34,7 +34,7 @@ public class FacultyDirectory {
 	 * creates a new empty FacultyDirectory
 	 */
 	public void newFacultyDirectory() {
-		this.facultyDirectory = new LinkedList<Faculty>();
+		facultyDirectory = new LinkedList<Faculty>();
 	}
 	
 	/**

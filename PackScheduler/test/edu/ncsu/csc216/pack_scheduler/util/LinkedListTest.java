@@ -3,8 +3,6 @@ package edu.ncsu.csc216.pack_scheduler.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.util.NoSuchElementException;
-
 import org.junit.Test;
 
 /**
@@ -33,12 +31,6 @@ public class LinkedListTest {
 	@Test
 	public void testGet() {
 		LinkedList<String> list = new LinkedList<String>();
-		try {
-			assertEquals(null, list.get(0));
-			fail();
-		} catch (IndexOutOfBoundsException e) {
-			// skip
-		}
 		// add an element to the beginning
 		list.add(0, "Hi");
 		assertEquals("Hi", list.get(0));
@@ -75,11 +67,12 @@ public class LinkedListTest {
 		try {
 			list.add(1, null);
 			fail();
-		} catch (NoSuchElementException e) {
-			// skip
+		} catch (NullPointerException e) {
+			System.out.println("caught");
 		}
 		// add at the beginning
 		list.add(0, "Claire");
+		System.out.println("Added Claire");
 		assertEquals(1, list.size());
 		assertEquals("Claire", list.get(0));
 		// attempts to adds a duplicate item

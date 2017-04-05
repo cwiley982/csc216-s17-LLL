@@ -4,12 +4,25 @@ import java.util.AbstractSequentialList;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Creates a linked list to be used for in adding faculty to a list by the
+ * registrar. List can be traversed both ways by using the inner class
+ * LinkedListIterator.
+ * 
+ * @author Caitlyn
+ *
+ * @param <E>
+ */
 public class LinkedList<E> extends AbstractSequentialList<E> {
 
 	private ListNode front;
 	private ListNode back;
 	private int size;
 
+	/**
+	 * Constructs a linked list and has front and back set to null and has them
+	 * pointing forward and backward to each other
+	 */
 	public LinkedList() {
 		size = 0;
 		front = new ListNode(null);
@@ -29,12 +42,33 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		return size;
 	}
 
+	// @Override
+	// public void add(int index, E element) {
+	// if (contains(element)) {
+	// throw new IllegalArgumentException();
+	// }
+	// listIterator(index).add(element);
+	// }
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.AbstractSequentialList#add(int, java.lang.Object)
+	 */
 	@Override
 	public void add(int index, E element) {
-		if (contains(element)) {
+		if (element == null) {
+			throw new NullPointerException();
+		}
+		if (this.contains(element)) {
 			throw new IllegalArgumentException();
 		}
-		listIterator(index).add(element);
+		super.add(index, element);
+	}
+
+	@Override
+	public E set(int index, E element) {
+		return super.set(index, element);
 	}
 
 	/**
@@ -141,7 +175,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 
 		@Override
 		public E next() {
-			if (next.data == null) {
+			if (next == null) {
 				throw new NoSuchElementException();
 			}
 			lastRetrieved = next;
@@ -155,7 +189,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 
 		@Override
 		public E previous() {
-			if (previous.data == null) {
+			if (previous == null) {
 				throw new NoSuchElementException();
 			}
 			lastRetrieved = previous;
@@ -174,12 +208,21 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		}
 
 		@Override
-		public void set(E arg0) {
-			// TODO Auto-generated method stub
-
+		public void set(E element) {
+			if (element == null) {
+				throw new NullPointerException();
+			}
+			if (lastRetrieved == null) {
+				throw new IllegalStateException();
+			} else if (lastRetrieved == next) { // change next node
+				ListNode newNode = new ListNode(element, previous, next.next);
+				previous.next = newNode;
+				next = newNode;
+			} else if (lastRetrieved == previous) { // change previous node
+				ListNode newNode = new ListNode(element, previous.prev, next);
+				next.prev = newNode;
+				previous = newNode;
+			}
 		}
-
 	}
-
 }
-
