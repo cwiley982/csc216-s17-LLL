@@ -68,11 +68,10 @@ public class LinkedListTest {
 			list.add(1, null);
 			fail();
 		} catch (NullPointerException e) {
-			System.out.println("caught");
+			// skip
 		}
 		// add at the beginning
 		list.add(0, "Claire");
-		System.out.println("Added Claire");
 		assertEquals(1, list.size());
 		assertEquals("Claire", list.get(0));
 		// attempts to adds a duplicate item

@@ -68,6 +68,12 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 
 	@Override
 	public E set(int index, E element) {
+		if (element == null) {
+			throw new NullPointerException();
+		}
+		if (this.contains(element)) {
+			throw new IllegalArgumentException();
+		}
 		return super.set(index, element);
 	}
 
@@ -179,7 +185,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 				throw new NoSuchElementException();
 			}
 			lastRetrieved = next;
-			return next.data;
+			E data = next.data;
+			next = next.next;
+			previous = previous.next;
+			return data;
 		}
 
 		@Override
@@ -193,7 +202,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 				throw new NoSuchElementException();
 			}
 			lastRetrieved = previous;
-			return previous.data;
+			E data = previous.data;
+			previous = previous.prev;
+			next = next.prev;
+			return data;
 		}
 
 		@Override
@@ -203,7 +215,18 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 
 		@Override
 		public void remove() {
-			// TODO Auto-generated method stub
+			if (lastRetrieved == null) {
+				throw new IllegalStateException();
+			} else if (lastRetrieved == next) {
+				// remove next
+				next.next.prev = previous;
+				previous.next = next.next;
+				size--;
+			} else if (lastRetrieved == previous) {
+				// remove previous
+
+				size--;
+			}
 
 		}
 
