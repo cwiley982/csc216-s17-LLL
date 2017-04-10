@@ -33,28 +33,30 @@ public class FacultyRecordIO {
 	public static LinkedList<Faculty> readFacultyRecords(String fileName) throws FileNotFoundException {
 		LinkedList<Faculty> faculty = new LinkedList<Faculty>();
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));
-		if (fileName == null || fileName.equals(""))
-		{
+		if (fileName == null || fileName.equals("")) {
 			fileReader.close();
 			throw new FileNotFoundException();
 		}
-		while(fileReader.hasNextLine()){
-			try{
-				faculty.add(processFaculty(fileReader.nextLine()));
-			} catch(IllegalArgumentException e){
+		int i = 0;
+		while (fileReader.hasNextLine()) {
+			try {
+				faculty.add(i, processFaculty(fileReader.nextLine()));
+				i++;
+			} catch (IllegalArgumentException e) {
 				//skip the line
 			}
 		}
 		fileReader.close();
 		return faculty;
 	}
-	private static Faculty processFaculty(String line){
+
+	private static Faculty processFaculty(String line) {
 		Scanner lineReader = new Scanner(line);
 		lineReader.useDelimiter(",");
 		String firstName, lastName, id, email, password;
 		int courses;
 		Faculty f;
-		try{
+		try {
 			firstName = lineReader.next();
 			lastName = lineReader.next();
 			id = lineReader.next();
