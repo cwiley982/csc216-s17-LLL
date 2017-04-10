@@ -3,10 +3,12 @@
  */
 package edu.ncsu.csc216.pack_scheduler.directory;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ListIterator;
 
+import edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
@@ -42,7 +44,11 @@ public class FacultyDirectory {
 	 * @param filename file name
 	 */
 	public void loadFacultyFromFile(String filename) {
-		
+		try {
+			FacultyRecordIO.readFacultyRecords(filename);
+		} catch (FileNotFoundException e) {
+			throw new IllegalArgumentException("Unable to read file " + filename);
+		}
 	}
 	
 	/**
@@ -50,7 +56,11 @@ public class FacultyDirectory {
 	 * @param filename file name
 	 */
 	public void saveFacultyDirectory(String filename) {
-		
+		try {
+			FacultyRecordIO.writeFacultyRecords(filename, facultyDirectory);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("Unable to write to file " + filename);
+		}
 	}
 	
 	/**

@@ -10,21 +10,20 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 
 
 /**
  * Reads student records and writes them into a new file
+ * 
  * @author hiteshwaripatel
+ * @author Caitlyn
  *
  */
 public class FacultyRecordIO {
 
-	
-	public FacultyRecordIO() {
-		
-	}
 	/**
 	 * Reads faculty records from file and returns as a LinkedList
 	 * @param fileName file to read Faculty records from
