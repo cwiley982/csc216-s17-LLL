@@ -222,12 +222,14 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 				previous.next = next.next;
 				next.next.prev = previous;
 				next = previous.next;
+				lastRetrieved = null;
 				size--;
 			} else if (lastRetrieved == previous) {
 				// remove previous
 				previous.prev.next = next;
 				next.prev = previous.prev;
 				previous = next.prev;
+				lastRetrieved = null;
 				size--;
 			}
 
