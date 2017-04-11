@@ -272,12 +272,16 @@ public class RegistrationManager {
 	}
 	
 	/**
-	 * This method adds faculty to course. 
-	 * @param c Course to add to faculty's schedule
-	 * @param f faculty to add course in their schedule 
-	 * @return return true or false as per condition 
+	 * adds a faculty to a course
+	 * @param c Course
+	 * @param f Faculty
+	 * @return true if added, false if not 
 	 */
+<<<<<<< HEAD
 	public boolean addFacultyToCourse(Course c, Faculty f) {
+=======
+	public boolean addFacultyToCourse(Course c, Faculty f){
+>>>>>>> branch 'master' of https://github.ncsu.edu/engr-csc216-spring2017/csc216-212-LLL-4.git
 		if (currentUser == null || !(currentUser.equals(registrar))) {
 			throw new IllegalArgumentException();
 		}
@@ -287,12 +291,16 @@ public class RegistrationManager {
 		}
 	
 	/**
-	 * This method remove Faculty from Course. 
-	 * @param c Course to remove from  faculty's schedule
-	 * @param f faculty to remove course from their schedule 
-	 * @return return true or false as per condition 
+	 * removes a Faculty from teaching a Course
+	 * @param c Course
+	 * @param f Faculty
+	 * @return true if removed, false if not
 	 */
+<<<<<<< HEAD
 	public boolean removeFacultyFromCourse(Course c, Faculty f) {
+=======
+	public boolean removeFacultyFromCourse(Course c, Faculty f){
+>>>>>>> branch 'master' of https://github.ncsu.edu/engr-csc216-spring2017/csc216-212-LLL-4.git
 		if (currentUser == null || !(currentUser.equals(registrar))) {
 			throw new IllegalArgumentException();
 		}
@@ -302,8 +310,8 @@ public class RegistrationManager {
 		}
 	
 	/**
-	 * This method reset the Faculty schedule. 
-	 * @param f faculty to reset the schedule. 
+	 * resets the faculty's schedule
+	 * @param f Faculty
 	 */
 	public void resetFacultySchedule(Faculty f) {
 		if (currentUser == null || !(currentUser.equals(registrar))) {
