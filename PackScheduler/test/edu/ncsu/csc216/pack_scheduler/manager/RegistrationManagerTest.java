@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
@@ -70,7 +71,10 @@ public class RegistrationManagerTest {
 		}
 		assertFalse(manager.login("registrar", "Registr@r"));
 		assertTrue(manager.login("registrar", "Regi5tr@r"));
-		
+	    FacultyDirectory fd = manager.getFacultyDirectory();
+	    fd.addFaculty("First", "Last", "id", "email@ncsu.edu", "pw", "pw", 3);
+	    manager.logout();
+	    assertFalse(manager.login("id", "pw"));
 	}
 	/**
 	 * Tests that when a student logs in, they can log out. (Current user becomes null)
@@ -129,7 +133,6 @@ public class RegistrationManagerTest {
 					"registrar", manager.getCurrentUser().getId());
 		}
 		manager.logout();
-
 		manager.login("efrost", "pw");
 		assertFalse(
 				"Action: enroll\nUser: efrost\nCourse: CSC216-001\nResults: False - Student max credits are 3 and course has 4.",
