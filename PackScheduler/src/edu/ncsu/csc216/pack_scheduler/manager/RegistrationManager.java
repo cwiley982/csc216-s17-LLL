@@ -272,17 +272,10 @@ public class RegistrationManager {
 	}
 	
 	/**
-<<<<<<< HEAD
 	 * adds a faculty to a course
 	 * @param c Course
 	 * @param f Faculty
 	 * @return true if added, false if not 
-=======
-	 * This method adds faculty to course. 
-	 * @param c Course to add to faculty's schedule
-	 * @param f faculty to add course in their schedule 
-	 * @return return true or false as per condition 
->>>>>>> 5a973225c109bf946e55405665de179bf827eee1
 	 */
 	public boolean addFacultyToCourse(Course c, Faculty f){
 		if (currentUser == null || !(currentUser.equals(registrar))) {
@@ -294,17 +287,10 @@ public class RegistrationManager {
 		}
 	
 	/**
-<<<<<<< HEAD
 	 * removes a Faculty from teaching a Course
 	 * @param c Course
 	 * @param f Faculty
 	 * @return true if removed, false if not
-=======
-	 * This method remove Faculty from Course. 
-	 * @param c Course to remove from  faculty's schedule
-	 * @param f faculty to remove course from their schedule 
-	 * @return return true or false as per condition 
->>>>>>> 5a973225c109bf946e55405665de179bf827eee1
 	 */
 	public boolean removeFacultyFromCourse(Course c, Faculty f){
 		if (currentUser == null || !(currentUser.equals(registrar))) {
@@ -316,13 +302,8 @@ public class RegistrationManager {
 		}
 	
 	/**
-<<<<<<< HEAD
 	 * resets the faculty's schedule
 	 * @param f Faculty
-=======
-	 * This method reset the Faculty schedule. 
-	 * @param f faculty to reset the schedule. 
->>>>>>> 5a973225c109bf946e55405665de179bf827eee1
 	 */
 	public void resetFacultySchedule(Faculty f) {
 		if (currentUser == null || !(currentUser.equals(registrar))) {
