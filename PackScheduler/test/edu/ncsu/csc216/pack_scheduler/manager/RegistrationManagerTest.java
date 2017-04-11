@@ -447,7 +447,7 @@ public class RegistrationManagerTest {
 		Faculty f = new Faculty("idk", "ppidk", "id", "email@ncsu.edu", "hashedpassword", 2);
 		
 		RegistrationManager.getInstance().addFacultyToCourse(c, f);
-		assertEquals(1,f.getSchedule().getNumScheduledCourses());
+		assertEquals(1, f.getSchedule().getNumScheduledCourses());
 		
 	}
 	
@@ -462,7 +462,7 @@ public class RegistrationManagerTest {
 		f.getSchedule().addCourseToSchedule(c);
 		f.getSchedule().removeCourseFromSchedule(c);
 		
-		assertEquals(0,f.getSchedule().getNumScheduledCourses());
+		assertEquals(0, f.getSchedule().getNumScheduledCourses());
 		
 	}
 	
@@ -476,7 +476,7 @@ public class RegistrationManagerTest {
 		
 		f.getSchedule().addCourseToSchedule(c);
 		f.getSchedule().resetSchedule();
-		assertEquals(0,f.getSchedule().getNumScheduledCourses());
+		assertEquals(0, f.getSchedule().getNumScheduledCourses());
 		
 	}
 	
