@@ -232,11 +232,12 @@ public class Course extends Activity implements Comparable<Course>
 	 * is null or an empty String
 	 */
 	public void setInstructorId(String instructorId) {
-		if (instructorId == null || instructorId.length() == 0)
-		{
+		if (instructorId == null || !instructorId.equals("")) {
+			this.instructorId = instructorId;
+		} else {
 			throw new IllegalArgumentException("Invalid instructor Id");
 		}
-		this.instructorId = instructorId;
+
 	}
 
 
@@ -246,22 +247,19 @@ public class Course extends Activity implements Comparable<Course>
 	 * @return String representation of Course
 	 */
 	@Override
-	public String toString() 
-	{
-		 if (getMeetingDays().equals("A")) 
-		 {
+	public String toString() {
+		if (getMeetingDays().equals("A")) {
 			return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + ","
 					+ getCourseRoll().getEnrollmentCap() + "," + getMeetingDays();
-		 }
+		}
 		return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + ","
 				+ getCourseRoll().getEnrollmentCap() + "," + getMeetingDays() + "," + getStartTime() + ","
 				+ getEndTime();
 	}
-	
+
 	/** Generates a hashCode for Course using all fields
 	 * @return hashCode for Course
 	 */
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -272,11 +270,11 @@ public class Course extends Activity implements Comparable<Course>
 		result = prime * result + ((section == null) ? 0 : section.hashCode());
 		return result;
 	}
+
 	/** Compares a given object to this object for the equality on all fields
 	 * @param obj The Course to compare 
 	 * @return true if the objects are the same in all fields
 	 */
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -305,14 +303,14 @@ public class Course extends Activity implements Comparable<Course>
 			return false;
 		return true;
 	}
+
 	/**Returns a short array with the course's name, section
 	 * number, title, and meeting days.
 	 * @return shortDisplay array containing name, section,
 	 * title and meeting days
 	 */
 	@Override
-	public String[] getShortDisplayArray() 
-	{
+	public String[] getShortDisplayArray() {
 		String[] shortDisplay = new String[5];
 		shortDisplay[0] = name;
 		shortDisplay[1] = section;
@@ -321,6 +319,7 @@ public class Course extends Activity implements Comparable<Course>
 		shortDisplay[4] = Integer.toString(roll.getOpenSeats());
 		return shortDisplay;
 	}
+
 	/**Returns a longer array with the course's name, section 
 	 * number, title, number of credits, instructor's unity ID, the 
 	 * meeting days, and an empty String
@@ -340,14 +339,14 @@ public class Course extends Activity implements Comparable<Course>
 		longDisplay[6] = "";
 		return longDisplay;
 	}
+
 	/**
 	 * Checks if a specific course already exists in the schedule
 	 * @param course course to check for a duplicate for
 	 * @return true if the course already exists in the schedule
 	 * @throws IllegalArgumentException if wrong 
 	 */
-	public boolean isDuplicate(Activity course)
-	{
+	public boolean isDuplicate(Activity course) {
 		try{
 			Course c = (Course)course;
 			return this.getName().equals(c.getName()); 
@@ -357,6 +356,7 @@ public class Course extends Activity implements Comparable<Course>
 			return false;
 		}
 	}
+
 	/**
 	 * Compares the name and section of the current course to another course.
 	 * First checks name and then checks section. 
@@ -397,7 +397,7 @@ public class Course extends Activity implements Comparable<Course>
 	 * 
 	 * @return a CourseRoll containing students in the class
 	 */
-	public CourseRoll getCourseRoll(){
+	public CourseRoll getCourseRoll() {
 		return roll;
 	}
 	

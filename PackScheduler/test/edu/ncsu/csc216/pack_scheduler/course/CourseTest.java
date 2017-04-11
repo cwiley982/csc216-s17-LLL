@@ -1,6 +1,11 @@
 package edu.ncsu.csc216.pack_scheduler.course;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -370,20 +375,22 @@ public class CourseTest {
 		assertEquals(START_TIME, c.getStartTime());
 		assertEquals(END_TIME, c.getEndTime());
 		
-		//Test that setting the instructor id to null doesn't change the instructor id (or anything else).
+		// Test that setting the instructor id to null is allowed and doesn't
+		// change anything else.
 		try {
 			c.setInstructorId(null);
-			fail();
-		} catch (IllegalArgumentException e) {
 			assertEquals(NAME, c.getName());
 			assertEquals(TITLE, c.getTitle());
 			assertEquals(SECTION, c.getSection());
 			assertEquals(CREDITS, c.getCredits());
-			assertEquals(INSTRUCTOR_ID, c.getInstructorId());
+			assertEquals(null, c.getInstructorId());
 			assertEquals(ENROLLMENT_CAP, c.getCourseRoll().getEnrollmentCap());
 			assertEquals(MEETING_DAYS, c.getMeetingDays());
 			assertEquals(START_TIME, c.getStartTime());
 			assertEquals(END_TIME, c.getEndTime());
+		} catch (IllegalArgumentException e) {
+			fail();
+
 		}
 		
 		//Test that setting the instructor id to "" doesn't change the instructor id (or anything else).
@@ -395,7 +402,7 @@ public class CourseTest {
 			assertEquals(TITLE, c.getTitle());
 			assertEquals(SECTION, c.getSection());
 			assertEquals(CREDITS, c.getCredits());
-			assertEquals(INSTRUCTOR_ID, c.getInstructorId());
+			assertEquals(null, c.getInstructorId());
 			assertEquals(ENROLLMENT_CAP, c.getCourseRoll().getEnrollmentCap());
 			assertEquals(MEETING_DAYS, c.getMeetingDays());
 			assertEquals(START_TIME, c.getStartTime());

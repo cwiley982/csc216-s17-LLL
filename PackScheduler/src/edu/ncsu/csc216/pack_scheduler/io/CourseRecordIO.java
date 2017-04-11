@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 
 /**
  * Reads Course records from text files. Creates a set of CourseRecords in a file.
@@ -29,32 +31,25 @@ public class CourseRecordIO {
 	public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException{
 		Scanner fileReader = new Scanner(new File(fileName));
 		SortedList<Course> courses = new SortedList<Course>();
-		if (fileName == null || fileName.equals(""))
-		{
+		if (fileName == null || fileName.equals("")) {
 			fileReader.close();
 			throw new FileNotFoundException();
 		}
-		while (fileReader.hasNextLine()) 
-		{
-			
+		while (fileReader.hasNextLine()) {
 			try{
 				Course course = readCourse(fileReader.nextLine());
 				boolean duplicate = false;
-				for (int i = 0; i < courses.size(); i++)
-				{
+				for (int i = 0; i < courses.size(); i++) {
 					Course c = courses.get(i);
-					if (course.getName().equals(c.getName()) && course.getSection().equals(c.getSection()))
-					{
+					if (course.getName().equals(c.getName()) && course.getSection().equals(c.getSection())) {
 						duplicate = true;
 					}
 				}
-				if (!duplicate)
-				{
+				if (!duplicate) {
 					courses.add(course);
 				}
 	 		}
-	 		catch(IllegalArgumentException e) 
-	 		{
+			catch (IllegalArgumentException e) {
 	 			//skip line
 	 		}
 		}
@@ -85,25 +80,29 @@ public class CourseRecordIO {
 			enrollmentCap = Integer.parseInt(readInput.next());
 			String courseMeetDays = readInput.next();
 				
-			if (!courseMeetDays.equals("A"))
-			{
+			if (!courseMeetDays.equals("A")) {
 				int startTime = readInput.nextInt();
 				int endTime = readInput.nextInt();
-				c = new Course(courseName, courseTitle, courseSection, courseCredits, instructorID, enrollmentCap, courseMeetDays, startTime, endTime);
+				c = new Course(courseName, courseTitle, courseSection, courseCredits, null, enrollmentCap,
+						courseMeetDays, startTime, endTime);
 			}
-			else
-			{
-				if (!readInput.hasNext())
-				{
-					c = new Course(courseName, courseTitle, courseSection, courseCredits, instructorID, enrollmentCap, courseMeetDays);
+			else {
+				if (!readInput.hasNext()) {
+					c = new Course(courseName, courseTitle, courseSection, courseCredits, null, enrollmentCap,
+							courseMeetDays);
 				}
 				/**if courseMeetDays = "A" then there should be no tokens left**/
-				else
-				{
+				else {
 					readInput.close();
 					throw new IllegalArgumentException();
 				}
 			}
+			// if there's a faculty with matching id, add course to schedule
+			Faculty f = RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructorID);
+			if (f != null) {
+				f.getSchedule().addCourseToSchedule(c);
+			}
+
 			readInput.close();
 			return c;
 		}

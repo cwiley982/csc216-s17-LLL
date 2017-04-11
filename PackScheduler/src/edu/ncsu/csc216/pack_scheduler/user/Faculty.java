@@ -1,7 +1,12 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
-/** Describes state and behavior of a faculty user
+import edu.ncsu.csc216.pack_scheduler.user.schedule.FacultySchedule;
+
+/**
+ * Describes state and behavior of a faculty user
+ * 
  * @author Lauren
+ * @author Caitlyn
  */
 public class Faculty extends User {
 	
@@ -11,6 +16,8 @@ public class Faculty extends User {
 	public static final int MIN_COURSES = 1;
 	/** maximum number of courses */
 	public static final int MAX_COURSES = 3;
+	/** The schedule containing all courses a faculty memeber will teach */
+	private FacultySchedule schedule;
 	
 	/**
 	 * Constructs a faculty object
@@ -24,7 +31,27 @@ public class Faculty extends User {
 	public Faculty(String firstName, String lastName, String id, String email, String password, int courses) {
 		super(firstName, lastName, id, email, password);
 		setMaxCourses(courses);
+		schedule = new FacultySchedule(id);
 	}
+
+	/**
+	 * Gets the faculty's schedule
+	 * 
+	 * @return schedule for the faculty member
+	 */
+	public FacultySchedule getSchedule() {
+		return schedule;
+	}
+
+	/**
+	 * Tells whether the faculty has too many classes or not
+	 * 
+	 * @return true if schedule contains more courses than MAX_COURSES
+	 */
+	public boolean isOverloaded() {
+		return schedule.getNumScheduledCourses() > maxCourses;
+	}
+
 	/**
 	 * sets the max number of courses faculty can teach
 	 * @param courses number of courses

@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
 
 /**
  * Tests CouresRecordIO.
@@ -64,6 +65,8 @@ public class CourseRecordIOTest {
 	 */
 	@Test
 	public void testReadValidCourseRecords() {
+		RegistrationManager.getInstance().getFacultyDirectory().addFaculty("Jordan", "Young", "jdyoung2",
+				"jdyoung2@ncsu.edu", "pw", "pw", 2);
 		try {
 			SortedList<Course> courses = CourseRecordIO.readCourseRecords(validTestFile);
 			assertEquals(8, courses.size());

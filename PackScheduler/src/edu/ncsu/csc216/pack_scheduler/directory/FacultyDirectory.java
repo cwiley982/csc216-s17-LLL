@@ -127,7 +127,7 @@ public class FacultyDirectory {
 	 * @return Faculty object
 	 */
 	public Faculty getFacultyById(String id) {
-		for(int i = 0; i < facultyDirectory.size(); i++){
+		for (int i = 0; i < facultyDirectory.size(); i++) {
 			if(facultyDirectory.get(i).getId().equals(id)){
 				return facultyDirectory.get(i);
 			}
