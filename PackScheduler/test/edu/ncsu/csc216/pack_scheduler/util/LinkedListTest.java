@@ -68,7 +68,7 @@ public class LinkedListTest {
 		LinkedList<String> list = new LinkedList<String>();
 		// attempt to add a null element
 		try {
-			list.add(1, null);
+			list.add(0, null);
 			fail();
 		} catch (NullPointerException e) {
 			// skip
