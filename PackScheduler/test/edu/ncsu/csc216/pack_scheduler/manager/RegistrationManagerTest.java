@@ -11,8 +11,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 
@@ -436,5 +438,47 @@ public class RegistrationManagerTest {
 
 		manager.logout();
 	}
-
+	/**
+	 * Testing the method addFacultyToCourse() from RegistrationManager.java
+	 */
+	@Test 
+	public void  testAddFacultyToCourse(){
+		Course c = new Course("CSC555", "Programming something - Java", "001", 5, null, 10, "MWF", 1330, 1445);
+		Faculty f = new Faculty("idk", "ppidk", "id", "email@ncsu.edu", "hashedpassword", 2);
+		
+		RegistrationManager.getInstance().addFacultyToCourse(c, f);
+		assertEquals(1,f.getSchedule().getNumScheduledCourses());
+		
+	}
+	
+	/**
+	 * Testing the method removeFacultyFromCourse() from RegistrationManager.java
+	 */
+	@Test 
+	public void  testRemoveFacultyFromCourse(){
+		Course c = new Course("CSC555", "Programming something - Java", "001", 5, null, 10, "MWF", 1330, 1445);
+		Faculty f = new Faculty("idk", "ppidk", "id", "email@ncsu.edu", "hashedpassword", 2);
+		
+		f.getSchedule().addCourseToSchedule(c);
+		f.getSchedule().removeCourseFromSchedule(c);
+		
+		assertEquals(0,f.getSchedule().getNumScheduledCourses());
+		
+	}
+	
+	/**
+	 * Testing the method resetFacultySchedule() from RegistrationManager.java
+	 */
+	@Test 
+	public void  testResetFacultySchedule(){
+		Course c = new Course("CSC555", "Programming something - Java", "001", 5, null, 10, "MWF", 1330, 1445);
+		Faculty f = new Faculty("idk", "ppidk", "id", "email@ncsu.edu", "hashedpassword", 2);
+		
+		f.getSchedule().addCourseToSchedule(c);
+		f.getSchedule().resetSchedule();
+		assertEquals(0,f.getSchedule().getNumScheduledCourses());
+		
+	}
+	
+	
 }
