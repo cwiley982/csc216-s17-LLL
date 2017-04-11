@@ -17,7 +17,8 @@ public class LinkedListRecursive<E> {
 	 * constructs a LinkedListRecursive
 	 */
 	public LinkedListRecursive() {
-		
+		this.front = null;
+		this.size = 0;
 	}
 	
 	/**
@@ -25,6 +26,9 @@ public class LinkedListRecursive<E> {
 	 * @return boolean true if empty, false if not
 	 */
 	public boolean isEmpty() {
+		if(this.size == 0){
+			return true;
+		}
 		return false;
 	}
 	
@@ -42,7 +46,15 @@ public class LinkedListRecursive<E> {
 	 * @return true if added, false if not
 	 */
 	public boolean add(E element) {
-		return false;
+		if(isEmpty()) {
+			this.front = new ListNode(element, null);
+			this.size++;
+			return true;
+		}
+		if(this.contains(element)) {
+			throw new IllegalArgumentException();
+		}
+		return this.front.add(element);
 	}
 	
 	/**
@@ -51,7 +63,21 @@ public class LinkedListRecursive<E> {
 	 * @param element to add
 	 */
 	public void add(int index, E element) {
-		
+		if(this.contains(element)) {
+			throw new IllegalArgumentException();
+		}
+		if(index < 0 || index > size) {
+			throw new IndexOutOfBoundsException();
+		}
+		if(element == null) {
+			throw new NullPointerException();
+		}
+		if(index == 0){
+			this.front = new ListNode(element, this.front.next);
+			this.size++;
+		} else {
+			this.front.add(index, element);
+		}
 	}
 	
 	/**
@@ -60,7 +86,10 @@ public class LinkedListRecursive<E> {
 	 * @return element
 	 */
 	public E get(int index) {
-		return null;
+		if(index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException();
+		}
+		return this.front.get(index);
 	}
 	
 	/**
@@ -69,7 +98,18 @@ public class LinkedListRecursive<E> {
 	 * @return true if removed, false if not
 	 */
 	public boolean remove(E element) {
-		return false;
+		if(element == null) {
+			return false;
+		}
+		if(isEmpty()) {
+			return false;
+		}
+		if(this.front.data == element) {
+			this.front = this.front.next;
+			this.size--;
+			return true;
+		}
+		return this.front.remove(element);
 	}
 	
 	/**
@@ -78,7 +118,16 @@ public class LinkedListRecursive<E> {
 	 * @return element	
 	 */
 	public E remove(int index) {
-		return null;
+		if(index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException();
+		}
+		if(index == 0) {
+			E returnData = this.front.data;
+			this.front = this.front.next;
+			this.size--;
+			return returnData;
+		}
+		return this.front.remove(index);
 	}
 	
 	/**
@@ -88,7 +137,10 @@ public class LinkedListRecursive<E> {
 	 * @return element replaced
 	 */
 	public E set(int index, E element) {
-		return null;
+		if(index < 0 || index >= size){
+			throw new IndexOutOfBoundsException();
+		}
+		return this.front.set(index, element);
 	}
 	
 	/**
@@ -97,7 +149,10 @@ public class LinkedListRecursive<E> {
 	 * @return true if contained, false if not
 	 */
 	public boolean contains (E element) {
-		return false;
+		if(isEmpty()) {
+			return false;
+		}
+		return this.front.contains(element);
 	}
 	
 	/**
@@ -121,6 +176,15 @@ public class LinkedListRecursive<E> {
 			
 		}
 		
+		/**
+		 * adds an element to the end of a list
+		 * @param element to add
+		 * @return true if added, false if not
+		 */
+		public boolean add(E element) {
+			return false;
+		}
+
 		/**
 		 * adds a node to the list at a particular inde
 		 * @param index of element
