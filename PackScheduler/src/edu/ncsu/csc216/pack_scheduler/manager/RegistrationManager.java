@@ -8,6 +8,7 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
 import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
@@ -52,6 +53,7 @@ public class RegistrationManager {
 	private RegistrationManager() {
 		courseCatalog = new CourseCatalog();
 		studentDirectory = new StudentDirectory();
+		facultyDirectory = new FacultyDirectory();
 		registrar = new Registrar();
 		currentUser = null;
 	}
@@ -95,12 +97,27 @@ public class RegistrationManager {
 			Student s = studentDirectory.getStudentById(id);
 			if (s != null) {
 				try {
-
 					MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
 					digest.update(password.getBytes());
 					String localHashPW = new String(digest.digest());
 					if (s.getPassword().equals(localHashPW)) {
 						currentUser = s;
+						return true;
+					} else {
+						return false;
+					}
+				} catch (NoSuchAlgorithmException e) {
+					throw new IllegalArgumentException();
+				}
+			}
+			Faculty f = facultyDirectory.getFacultyById(id);
+			if (f != null) {
+				try {
+					MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
+					digest.update(password.getBytes());
+					String localHashPW = new String(digest.digest());
+					if (f.getPassword().equals(localHashPW)) {
+						currentUser = f;
 						return true;
 					} else {
 						return false;
@@ -127,11 +144,7 @@ public class RegistrationManager {
 				throw new IllegalArgumentException("User doesn't exist.");
 			}
 		}
-		/*if user already logged in*/
-		else {
-			return false;
-		}
-		
+		/*if user already logged in*/	
 		return false;
 	}
 
@@ -164,6 +177,7 @@ public class RegistrationManager {
 	public void clearData() {
 		courseCatalog.newCourseCatalog();
 		studentDirectory.newStudentDirectory();
+		facultyDirectory.newFacultyDirectory();
 	}
 
 	/**
