@@ -1,7 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.ListIterator;
 
@@ -122,6 +121,8 @@ public class LinkedListTest {
 		assertEquals(1, iterator.nextIndex());
 		assertEquals(0, iterator.previousIndex());
 		assertEquals("Happiness!", iterator.previous());
+		iterator.remove();
+		assertNull(iterator.previous());
 	}
 
 	/**
