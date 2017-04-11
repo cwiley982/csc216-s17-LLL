@@ -270,4 +270,50 @@ public class RegistrationManager {
 			super(FIRST_NAME, LAST_NAME, ID, EMAIL, hashPW);
 		}
 	}
+	
+	/**
+	 * 
+	 * @param c
+	 * @param f
+	 * @return
+	 */
+	public boolean addFacultyToCourse(Course c,Faculty f){
+		if (currentUser == null || !(currentUser.equals(registrar))) {
+			throw new IllegalArgumentException();
+		}
+		
+		f.getSchedule().addCourseToSchedule(c);
+		return true;
+		}
+	
+	/**
+	 * 
+	 * @param c
+	 * @param f
+	 * @return
+	 */
+	public boolean removeFacultyToCourse(Course c,Faculty f){
+		if (currentUser == null || !(currentUser.equals(registrar))) {
+			throw new IllegalArgumentException();
+		}
+		
+		f.getSchedule().removeCourseFromSchedule(c);
+		return true;
+		}
+	
+	/**
+	 * 
+	 * @param f
+	 */
+	public void resetFacultySchedule(Faculty f) {
+		if (currentUser == null || !(currentUser.equals(registrar))) {
+			throw new IllegalArgumentException();
+		}
+		
+		f.getSchedule().resetSchedule();
+		
+	}
+	
+	
+	
 }
