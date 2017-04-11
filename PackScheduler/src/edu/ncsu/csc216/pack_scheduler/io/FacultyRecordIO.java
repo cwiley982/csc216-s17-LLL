@@ -10,21 +10,20 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 
 
 /**
  * Reads student records and writes them into a new file
+ * 
  * @author hiteshwaripatel
+ * @author Caitlyn
  *
  */
 public class FacultyRecordIO {
 
-	
-	public FacultyRecordIO() {
-		
-	}
 	/**
 	 * Reads faculty records from file and returns as a LinkedList
 	 * @param fileName file to read Faculty records from
@@ -34,28 +33,30 @@ public class FacultyRecordIO {
 	public static LinkedList<Faculty> readFacultyRecords(String fileName) throws FileNotFoundException {
 		LinkedList<Faculty> faculty = new LinkedList<Faculty>();
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));
-		if (fileName == null || fileName.equals(""))
-		{
+		if (fileName == null || fileName.equals("")) {
 			fileReader.close();
 			throw new FileNotFoundException();
 		}
-		while(fileReader.hasNextLine()){
-			try{
-				faculty.add(processFaculty(fileReader.nextLine()));
-			} catch(IllegalArgumentException e){
+		int i = 0;
+		while (fileReader.hasNextLine()) {
+			try {
+				faculty.add(i, processFaculty(fileReader.nextLine()));
+				i++;
+			} catch (IllegalArgumentException e) {
 				//skip the line
 			}
 		}
 		fileReader.close();
 		return faculty;
 	}
-	private static Faculty processFaculty(String line){
+
+	private static Faculty processFaculty(String line) {
 		Scanner lineReader = new Scanner(line);
 		lineReader.useDelimiter(",");
 		String firstName, lastName, id, email, password;
 		int courses;
 		Faculty f;
-		try{
+		try {
 			firstName = lineReader.next();
 			lastName = lineReader.next();
 			id = lineReader.next();

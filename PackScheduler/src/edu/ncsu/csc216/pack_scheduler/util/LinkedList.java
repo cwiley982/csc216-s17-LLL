@@ -42,14 +42,6 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		return size;
 	}
 
-	// @Override
-	// public void add(int index, E element) {
-	// if (contains(element)) {
-	// throw new IllegalArgumentException();
-	// }
-	// listIterator(index).add(element);
-	// }
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -224,7 +216,8 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 				size--;
 			} else if (lastRetrieved == previous) {
 				// remove previous
-
+				previous.prev.next = next;
+				next.prev = previous.prev;
 				size--;
 			}
 
@@ -238,13 +231,9 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			if (lastRetrieved == null) {
 				throw new IllegalStateException();
 			} else if (lastRetrieved == next) { // change next node
-				ListNode newNode = new ListNode(element, previous, next.next);
-				previous.next = newNode;
-				next = newNode;
+				next.data = element;
 			} else if (lastRetrieved == previous) { // change previous node
-				ListNode newNode = new ListNode(element, previous.prev, next);
-				next.prev = newNode;
-				previous = newNode;
+				previous.data = element;
 			}
 		}
 	}
