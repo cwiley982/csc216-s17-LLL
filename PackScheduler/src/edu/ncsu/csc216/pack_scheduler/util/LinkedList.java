@@ -12,6 +12,7 @@ import java.util.NoSuchElementException;
  * @author Caitlyn
  *
  * @param <E>
+ *            generic parameter
  */
 public class LinkedList<E> extends AbstractSequentialList<E> {
 
