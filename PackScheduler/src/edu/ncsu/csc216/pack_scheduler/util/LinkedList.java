@@ -219,13 +219,15 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 				throw new IllegalStateException();
 			} else if (lastRetrieved == next) {
 				// remove next
-				next.next.prev = previous;
 				previous.next = next.next;
+				next.next.prev = previous;
+				next = previous.next;
 				size--;
 			} else if (lastRetrieved == previous) {
 				// remove previous
 				previous.prev.next = next;
 				next.prev = previous.prev;
+				previous = next.prev;
 				size--;
 			}
 
