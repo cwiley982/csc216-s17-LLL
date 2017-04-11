@@ -95,7 +95,7 @@ public class FacultyDirectory {
 		if (!hashPW.equals(repeatHashPW)) {
 			throw new IllegalArgumentException("Passwords do not match");
 		}
-		Faculty faculty = new Faculty(firstName, lastName, id, email, password, maxCourses);
+		Faculty faculty = new Faculty(firstName, lastName, id, email, hashPW, maxCourses);
 		for (int i = 0; i < facultyDirectory.size(); i++) {
 			User s = facultyDirectory.get(i);
 			if (s.getId().equals(faculty.getId())) {
