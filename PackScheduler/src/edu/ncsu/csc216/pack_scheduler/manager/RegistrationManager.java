@@ -277,11 +277,7 @@ public class RegistrationManager {
 	 * @param f Faculty
 	 * @return true if added, false if not 
 	 */
-<<<<<<< HEAD
 	public boolean addFacultyToCourse(Course c, Faculty f) {
-=======
-	public boolean addFacultyToCourse(Course c, Faculty f){
->>>>>>> branch 'master' of https://github.ncsu.edu/engr-csc216-spring2017/csc216-212-LLL-4.git
 		if (currentUser == null || !(currentUser.equals(registrar))) {
 			throw new IllegalArgumentException();
 		}
@@ -296,11 +292,8 @@ public class RegistrationManager {
 	 * @param f Faculty
 	 * @return true if removed, false if not
 	 */
-<<<<<<< HEAD
+
 	public boolean removeFacultyFromCourse(Course c, Faculty f) {
-=======
-	public boolean removeFacultyFromCourse(Course c, Faculty f){
->>>>>>> branch 'master' of https://github.ncsu.edu/engr-csc216-spring2017/csc216-212-LLL-4.git
 		if (currentUser == null || !(currentUser.equals(registrar))) {
 			throw new IllegalArgumentException();
 		}
