@@ -223,6 +223,8 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 				next.next.prev = previous;
 				next = previous.next;
 				lastRetrieved = null;
+				nextIndex--;
+				previousIndex--;
 				size--;
 			} else if (lastRetrieved == previous) {
 				// remove previous
