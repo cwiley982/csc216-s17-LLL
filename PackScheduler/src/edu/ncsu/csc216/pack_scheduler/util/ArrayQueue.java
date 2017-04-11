@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
  * 
  * @author lsiegel
  * @param <E>
+ *            generic parameter
  *
  */
 public class ArrayQueue<E> implements Queue<E> {
