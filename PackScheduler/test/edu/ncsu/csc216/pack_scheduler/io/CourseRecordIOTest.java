@@ -58,6 +58,17 @@ public class CourseRecordIOTest {
 		} catch (IOException e) {
 			fail("Unable to reset files");
 		}
+		RegistrationManager manager = RegistrationManager.getInstance();
+		manager.clearData();
+		manager.getFacultyDirectory().addFaculty("J", "Y", "jdyoung2", "jdyoung2@ncsu.edu", "pw", "pw", 2);
+		manager.getFacultyDirectory().addFaculty("S", "B", "spbalik", "spbalik@ncsu.edu", "pw", "pw", 2);
+		manager.getFacultyDirectory().addFaculty("T", "D", "tbdimitr", "tbdimitr@ncsu.edu", "pw", "pw", 2);
+		manager.getFacultyDirectory().addFaculty("J", "K", "jtking", "jtking@ncsu.edu", "pw", "pw", 2);
+		manager.getFacultyDirectory().addFaculty("S", "S", "sesmith5", "sesmith5@ncsu.edu", "pw", "pw", 2);
+		manager.getFacultyDirectory().addFaculty("J", "E", "jep", "jep@ncsu.edu", "pw", "pw", 2);
+		manager.getFacultyDirectory().addFaculty("T", "B", "tmbarnes", "tmbarnes@ncsu.edu", "pw", "pw", 2);
+		manager.getFacultyDirectory().addFaculty("D", "S", "dbsturgi", "dbsturgi@ncsu.edu", "pw", "pw", 2);
+
 	}	
 	
 	/**
@@ -65,8 +76,6 @@ public class CourseRecordIOTest {
 	 */
 	@Test
 	public void testReadValidCourseRecords() {
-		RegistrationManager.getInstance().getFacultyDirectory().addFaculty("Jordan", "Young", "jdyoung2",
-				"jdyoung2@ncsu.edu", "pw", "pw", 2);
 		try {
 			SortedList<Course> courses = CourseRecordIO.readCourseRecords(validTestFile);
 			assertEquals(8, courses.size());
