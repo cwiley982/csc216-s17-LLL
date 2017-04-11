@@ -39,6 +39,7 @@ public class RegistrationManagerTest {
 		manager = RegistrationManager.getInstance();
 		manager.clearData();
 	}
+
 	/**
 	 * Tests that the registartionManager creates an empty course catalog initially
 	 */
@@ -96,6 +97,7 @@ public class RegistrationManagerTest {
 	 */
 	@Test
 	public void testGetCurrentUser() {
+		manager.logout();
 		StudentDirectory sd = manager.getStudentDirectory();
 		sd.addStudent("Caitlyn", "Wiley", "cjwiley2", "cjwiley2@ncsu.edu", "passWord123", "passWord123", 15);
 		assertTrue(manager.login("cjwiley2", "passWord123"));
@@ -446,8 +448,9 @@ public class RegistrationManagerTest {
 		Course c = new Course("CSC555", "Programming something - Java", "001", 5, null, 10, "MWF", 1330, 1445);
 		Faculty f = new Faculty("idk", "ppidk", "id", "email@ncsu.edu", "hashedpassword", 2);
 		
-		RegistrationManager.getInstance().addFacultyToCourse(c, f);
-		assertEquals(1,f.getSchedule().getNumScheduledCourses());
+		manager.login("registrar", "Regi5tr@r");
+		manager.addFacultyToCourse(c, f);
+		assertEquals(1, f.getSchedule().getNumScheduledCourses());
 		
 	}
 	
@@ -458,11 +461,13 @@ public class RegistrationManagerTest {
 	public void  testRemoveFacultyFromCourse(){
 		Course c = new Course("CSC555", "Programming something - Java", "001", 5, null, 10, "MWF", 1330, 1445);
 		Faculty f = new Faculty("idk", "ppidk", "id", "email@ncsu.edu", "hashedpassword", 2);
-		
-		f.getSchedule().addCourseToSchedule(c);
-		f.getSchedule().removeCourseFromSchedule(c);
-		
-		assertEquals(0,f.getSchedule().getNumScheduledCourses());
+
+		manager.login("registrar", "Regi5tr@r");
+		manager.addFacultyToCourse(c, f);
+		assertEquals(1, f.getSchedule().getNumScheduledCourses());
+
+		manager.removeFacultyFromCourse(c, f);
+		assertEquals(0, f.getSchedule().getNumScheduledCourses());
 		
 	}
 	
@@ -474,9 +479,12 @@ public class RegistrationManagerTest {
 		Course c = new Course("CSC555", "Programming something - Java", "001", 5, null, 10, "MWF", 1330, 1445);
 		Faculty f = new Faculty("idk", "ppidk", "id", "email@ncsu.edu", "hashedpassword", 2);
 		
-		f.getSchedule().addCourseToSchedule(c);
-		f.getSchedule().resetSchedule();
-		assertEquals(0,f.getSchedule().getNumScheduledCourses());
+		manager.login("registrar", "Regi5tr@r");
+		manager.addFacultyToCourse(c, f);
+		assertEquals(1, f.getSchedule().getNumScheduledCourses());
+
+		manager.resetFacultySchedule(f);
+		assertEquals(0, f.getSchedule().getNumScheduledCourses());
 		
 	}
 	

@@ -277,7 +277,7 @@ public class RegistrationManager {
 	 * @param f faculty to add course in their schedule 
 	 * @return return true or false as per condition 
 	 */
-	public boolean addFacultyToCourse(Course c,Faculty f){
+	public boolean addFacultyToCourse(Course c, Faculty f) {
 		if (currentUser == null || !(currentUser.equals(registrar))) {
 			throw new IllegalArgumentException();
 		}
@@ -292,7 +292,7 @@ public class RegistrationManager {
 	 * @param f faculty to remove course from their schedule 
 	 * @return return true or false as per condition 
 	 */
-	public boolean removeFacultyFromCourse(Course c,Faculty f){
+	public boolean removeFacultyFromCourse(Course c, Faculty f) {
 		if (currentUser == null || !(currentUser.equals(registrar))) {
 			throw new IllegalArgumentException();
 		}
