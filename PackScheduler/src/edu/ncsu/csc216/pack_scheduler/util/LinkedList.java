@@ -180,6 +180,8 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			E data = next.data;
 			next = next.next;
 			previous = previous.next;
+			nextIndex++;
+			previousIndex++;
 			return data;
 		}
 

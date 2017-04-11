@@ -3,6 +3,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.ListIterator;
+
 import org.junit.Test;
 
 /**
@@ -23,6 +25,7 @@ public class LinkedListTest {
 		for (int i = 0; i < list.size(); i++) {
 			assertEquals("", list.get(i));
 		}
+		
 	}
 
 	/**
@@ -114,6 +117,11 @@ public class LinkedListTest {
 		list.add(8, "Cool");
 		list.add(9, "Sweet!");
 		list.add(10, "You got it!");
+		ListIterator<String> iterator = list.listIterator(0);
+		assertEquals("Happiness!", iterator.next());
+		assertEquals(1, iterator.nextIndex());
+		assertEquals(0, iterator.previousIndex());
+		assertEquals("Happiness!", iterator.previous());
 	}
 
 	/**
