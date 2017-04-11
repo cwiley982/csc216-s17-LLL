@@ -74,7 +74,7 @@ public class RegistrationManagerTest {
 	    FacultyDirectory fd = manager.getFacultyDirectory();
 	    fd.addFaculty("First", "Last", "id", "email@ncsu.edu", "pw", "pw", 3);
 	    manager.logout();
-	    assertFalse(manager.login("id", "pw"));
+	    assertTrue(manager.login("id", "pw"));
 	}
 	/**
 	 * Tests that when a student logs in, they can log out. (Current user becomes null)
