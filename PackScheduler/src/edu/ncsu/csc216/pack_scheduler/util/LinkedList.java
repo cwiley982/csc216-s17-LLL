@@ -49,6 +49,9 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	 */
 	@Override
 	public void add(int index, E element) {
+		if (index < 0 || index > size) {
+			throw new IndexOutOfBoundsException();
+		}
 		if (element == null) {
 			throw new NullPointerException();
 		}
@@ -60,6 +63,9 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 
 	@Override
 	public E set(int index, E element) {
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException();
+		}
 		if (element == null) {
 			throw new NullPointerException();
 		}

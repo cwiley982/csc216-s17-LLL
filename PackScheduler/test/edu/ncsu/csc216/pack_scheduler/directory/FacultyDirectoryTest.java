@@ -94,8 +94,12 @@ public class FacultyDirectoryTest {
 		assertEquals(8, sd.getFacultyDirectory().length);
 
 		// Test invalid file
-		sd.loadFacultyFromFile("test-files/invalid_Faculty_records.txt");
-		assertEquals(0, sd.getFacultyDirectory().length);
+		try {
+			sd.loadFacultyFromFile("test-files/invalid_Faculty_records.txt");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals(0, sd.getFacultyDirectory().length);
+		}
 
 		// Test nonexistent file
 		try {

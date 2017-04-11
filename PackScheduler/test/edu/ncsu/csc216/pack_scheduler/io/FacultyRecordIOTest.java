@@ -29,14 +29,14 @@ public class FacultyRecordIOTest {
 	private String hashPW;
 	private static final String HASH_ALGORITHM = "SHA-256";
 
-	private String validFaculty1 = "Ashely,Witt,awitt,mollis@Fuscealiquetmagna.net,0ï¿½Rï¿½ï¿½\"ï¿½ï¿½uï¿½ï¿½ï¿½\7Xï¿½Fï¿½ï¿½ï¿½9ï¿½{-Oï¿½Fï¿½apï¿½,2";
-	private String validFaculty2 = "Fiona,Meadows,fmeadow,pharetra.sed@et.org,0ï¿½Rï¿½ï¿½\"ï¿½ï¿½uï¿½ï¿½ï¿½\7Xï¿½Fï¿½ï¿½ï¿½9ï¿½{-Oï¿½Fï¿½apï¿½,3";
-	private String validFaculty3 = "Brent,Brewer,bbrewer,sem.semper@orcisem.co.uk,0ï¿½Rï¿½ï¿½\"ï¿½ï¿½uï¿½ï¿½ï¿½\7Xï¿½Fï¿½ï¿½ï¿½9ï¿½{-Oï¿½Fï¿½apï¿½,1";
-	private String validFaculty4 = "Halla,Aguirre,haguirr,Fusce.dolor.quam@amalesuadaid.net,0ï¿½Rï¿½ï¿½\"ï¿½ï¿½uï¿½ï¿½ï¿½\7Xï¿½Fï¿½ï¿½ï¿½9ï¿½{-Oï¿½Fï¿½apï¿½,3";
-	private String validFaculty5 = "Kevyn,Patel,kpatel,risus@pellentesque.ca,0ï¿½Rï¿½ï¿½\"ï¿½ï¿½uï¿½ï¿½ï¿½\7Xï¿½Fï¿½ï¿½ï¿½9ï¿½{-Oï¿½Fï¿½apï¿½,1";
-	private String validFaculty6 = "Elton,Briggs,ebriggs,arcu.ac@ipsumsodalespurus.edu,0ï¿½Rï¿½ï¿½\"ï¿½ï¿½uï¿½ï¿½ï¿½\7Xï¿½Fï¿½ï¿½ï¿½9ï¿½{-Oï¿½Fï¿½apï¿½,3";
-	private String validFaculty7 = "Norman,Brady,nbrady,pede.nonummy@elitfermentum.co.uk,0ï¿½Rï¿½ï¿½\"ï¿½ï¿½uï¿½ï¿½ï¿½\7Xï¿½Fï¿½ï¿½ï¿½9ï¿½{-Oï¿½Fï¿½apï¿½,1";
-	private String validFaculty8 = "Lacey,Walls,lwalls,nascetur.ridiculus.mus@fermentum.net,0ï¿½Rï¿½ï¿½\"ï¿½ï¿½uï¿½ï¿½ï¿½\7Xï¿½Fï¿½ï¿½ï¿½9ï¿½{-Oï¿½Fï¿½apï¿½,2";
+	private String validFaculty1 = "Ashely,Witt,awitt,mollis@Fuscealiquetmagna.net,0ÉRú±\"ÃùuŸ¦Ù\7X²F´þâ9•{-OîFâapÄ,2";
+	private String validFaculty2 = "Fiona,Meadows,fmeadow,pharetra.sed@et.org,0ÉRú±\"ÃùuŸ¦Ù\7X²F´þâ9•{-OîFâapÄ,3";
+	private String validFaculty3 = "Brent,Brewer,bbrewer,sem.semper@orcisem.co.uk,0ÉRú±\"ÃùuŸ¦Ù\7X²F´þâ9•{-OîFâapÄ,1";
+	private String validFaculty4 = "Halla,Aguirre,haguirr,Fusce.dolor.quam@amalesuadaid.net,0ÉRú±\"ÃùuŸ¦Ù\7X²F´þâ9•{-OîFâapÄ,3";
+	private String validFaculty5 = "Kevyn,Patel,kpatel,risus@pellentesque.ca,0ÉRú±\"ÃùuŸ¦Ù\7X²F´þâ9•{-OîFâapÄ,1";
+	private String validFaculty6 = "Elton,Briggs,ebriggs,arcu.ac@ipsumsodalespurus.edu,0ÉRú±\"ÃùuŸ¦Ù\7X²F´þâ9•{-OîFâapÄ,3";
+	private String validFaculty7 = "Norman,Brady,nbrady,pede.nonummy@elitfermentum.co.uk,0ÉRú±\"ÃùuŸ¦Ù\7X²F´þâ9•{-OîFâapÄ,1";
+	private String validFaculty8 = "Lacey,Walls,lwalls,nascetur.ridiculus.mus@fermentum.net,0ÉRú±\"ÃùuŸ¦Ù\7X²F´þâ9•{-OîFâapÄ,2";
 
 	private String[] validFacultys = { validFaculty1, validFaculty2, validFaculty3, validFaculty4, validFaculty5,
 			validFaculty6, validFaculty7, validFaculty8 };
@@ -138,7 +138,7 @@ public class FacultyRecordIOTest {
 			FacultyRecordIO.writeFacultyRecords("/home/sesmith5/actual_faculty_records.txt", faculty);
 			fail("Attempted to write to a directory location that doesn't exist or without the appropriate permissions and the write happened.");
 		} catch (IOException e) {
-			assertEquals("/home/sesmith5/actual_faculty_records.txt (No such file or directory)", e.getMessage());
+			assertEquals("/home/sesmith5/actual_faculty_records.txt (Permission denied)", e.getMessage());
 			// The actual error message on Jenkins!
 		}
 

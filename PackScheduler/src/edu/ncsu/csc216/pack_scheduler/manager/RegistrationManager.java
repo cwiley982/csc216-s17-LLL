@@ -168,7 +168,7 @@ public class RegistrationManager {
 	 * @return FacultyDirectory
 	 */
 	public FacultyDirectory getFacultyDirectory() {
-		return this.facultyDirectory;
+		return facultyDirectory;
 	}
 
 	/**
@@ -193,11 +193,9 @@ public class RegistrationManager {
 		}
 		try {
 			Student s = (Student) currentUser;
-			//Schedule schedule = s.getSchedule();
 			CourseRoll roll = c.getCourseRoll();
 
 			if (s.canAdd(c) && roll.canEnroll(s)) {
-				//schedule.addCourseToSchedule(c);
 				roll.enroll(s);
 				return true;
 			}
