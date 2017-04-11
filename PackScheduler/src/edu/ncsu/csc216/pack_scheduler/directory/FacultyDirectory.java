@@ -45,7 +45,7 @@ public class FacultyDirectory {
 	 */
 	public void loadFacultyFromFile(String filename) {
 		try {
-			FacultyRecordIO.readFacultyRecords(filename);
+			this.facultyDirectory = FacultyRecordIO.readFacultyRecords(filename);
 		} catch (FileNotFoundException e) {
 			throw new IllegalArgumentException("Unable to read file " + filename);
 		}

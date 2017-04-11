@@ -35,7 +35,7 @@ public class FacultyDirectoryTest {
 	/** Test password */
 	private static final String PASSWORD = "pw";
 	/** Test max credits */
-	private static final int MAX_COURSES = 15;
+	private static final int MAX_COURSES = 3;
 
 	/**
 	 * Resets course_records.txt for use in other tests.
@@ -78,7 +78,6 @@ public class FacultyDirectoryTest {
 
 		sd.loadFacultyFromFile(validTestFile);
 		assertEquals(8, sd.getFacultyDirectory().length);
-
 		sd.newFacultyDirectory();
 		assertEquals(0, sd.getFacultyDirectory().length);
 	}
@@ -92,7 +91,7 @@ public class FacultyDirectoryTest {
 
 		// Test valid file
 		sd.loadFacultyFromFile(validTestFile);
-		assertEquals(10, sd.getFacultyDirectory().length);
+		assertEquals(8, sd.getFacultyDirectory().length);
 
 		// Test invalid file
 		sd.loadFacultyFromFile("test-files/invalid_Faculty_records.txt");
@@ -132,13 +131,13 @@ public class FacultyDirectoryTest {
 
 		// Add Faculty and remove
 		sd.loadFacultyFromFile(validTestFile);
-		assertEquals(10, sd.getFacultyDirectory().length);
-		assertTrue(sd.removeFaculty("efrost"));
+		assertEquals(8, sd.getFacultyDirectory().length);
+		assertTrue(sd.removeFaculty("lwalls"));
 		String[][] facultyDirectory = sd.getFacultyDirectory();
-		assertEquals(9, facultyDirectory.length);
-		assertEquals("Zahir", facultyDirectory[5][0]);
-		assertEquals("King", facultyDirectory[5][1]);
-		assertEquals("zking", facultyDirectory[5][2]);
+		assertEquals(7, facultyDirectory.length);
+		assertEquals("Elton", facultyDirectory[5][0]);
+		assertEquals("Briggs", facultyDirectory[5][1]);
+		assertEquals("ebriggs", facultyDirectory[5][2]);
 	}
 
 	/**
@@ -149,7 +148,7 @@ public class FacultyDirectoryTest {
 		FacultyDirectory sd = new FacultyDirectory();
 
 		// Add a Faculty
-		sd.addFaculty("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
+		sd.addFaculty("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 3);
 		assertEquals(1, sd.getFacultyDirectory().length);
 		sd.saveFacultyDirectory("test-files/actual_Faculty_records.txt");
 		checkFiles("test-files/expected_Faculty_records.txt", "test-files/actual_Faculty_records.txt");
