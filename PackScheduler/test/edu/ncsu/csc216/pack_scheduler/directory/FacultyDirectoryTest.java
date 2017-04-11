@@ -96,7 +96,6 @@ public class FacultyDirectoryTest {
 		// Test invalid file
 		try {
 			sd.loadFacultyFromFile("test-files/invalid_Faculty_records.txt");
-			System.out.print(sd.getFacultyDirectory().length);
 			assertEquals(0, sd.getFacultyDirectory().length);
 		} catch (IllegalArgumentException e) {
 			//ignore
@@ -156,7 +155,7 @@ public class FacultyDirectoryTest {
 		sd.addFaculty("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 3);
 		assertEquals(1, sd.getFacultyDirectory().length);
 		sd.saveFacultyDirectory("test-files/actual_Faculty_records.txt");
-		checkFiles("test-files/expected_Faculty_records.txt", "test-files/actual_Faculty_records.txt");
+		checkFiles("test-files/expected_faculty_records.txt", "test-files/actual_Faculty_records.txt");
 	}
 
 	/**
