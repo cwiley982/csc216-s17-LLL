@@ -272,12 +272,12 @@ public class RegistrationManager {
 	}
 	
 	/**
-	 * 
-	 * @param c
-	 * @param f
-	 * @return
+	 * adds a faculty to a course
+	 * @param c Course
+	 * @param f Faculty
+	 * @return true if added, false if not 
 	 */
-	public boolean addFacultyToCourse(Course c,Faculty f){
+	public boolean addFacultyToCourse(Course c, Faculty f){
 		if (currentUser == null || !(currentUser.equals(registrar))) {
 			throw new IllegalArgumentException();
 		}
@@ -287,12 +287,12 @@ public class RegistrationManager {
 		}
 	
 	/**
-	 * 
-	 * @param c
-	 * @param f
-	 * @return
+	 * removes a Faculty from teaching a Course
+	 * @param c Course
+	 * @param f Faculty
+	 * @return true if removed, false if not
 	 */
-	public boolean removeFacultyFromCourse(Course c,Faculty f){
+	public boolean removeFacultyFromCourse(Course c, Faculty f){
 		if (currentUser == null || !(currentUser.equals(registrar))) {
 			throw new IllegalArgumentException();
 		}
@@ -302,8 +302,8 @@ public class RegistrationManager {
 		}
 	
 	/**
-	 * 
-	 * @param f
+	 * resets the faculty's schedule
+	 * @param f Faculty
 	 */
 	public void resetFacultySchedule(Faculty f) {
 		if (currentUser == null || !(currentUser.equals(registrar))) {

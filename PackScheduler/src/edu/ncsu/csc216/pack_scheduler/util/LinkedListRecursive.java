@@ -235,7 +235,7 @@ public class LinkedListRecursive<E> {
 				next = next.next;
 				return returnData;
 			}
-			return next.remove(index -1);
+			return next.remove(index - 1);
 		}
 		
 		/**
