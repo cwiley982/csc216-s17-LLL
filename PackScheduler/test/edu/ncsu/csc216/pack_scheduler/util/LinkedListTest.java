@@ -213,4 +213,17 @@ public class LinkedListTest {
 		assertEquals("Rocks!", list.get(2));
 	}
 
+	@Test
+	public void fixingTsTest(){
+		LinkedList<String> list = new LinkedList<String>();
+		list.add(0, "Claire");
+		list.add(1, "Katherine");
+		
+		// attempt to remove at a negative index
+		try {
+			list.remove(2);
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+		}
+		}
 }
