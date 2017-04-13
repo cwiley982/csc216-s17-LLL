@@ -29,14 +29,14 @@ public class FacultyRecordIOTest {
 	private String hashPW;
 	private static final String HASH_ALGORITHM = "SHA-256";
 
-	private String validFaculty1 = "Ashely,Witt,awitt,mollis@Fuscealiquetmagna.net,0ÉRú±\"ÃùuŸ¦Ù\7X²F´şâ9•{-OîFâapÄ,2";
-	private String validFaculty2 = "Fiona,Meadows,fmeadow,pharetra.sed@et.org,0ÉRú±\"ÃùuŸ¦Ù\7X²F´şâ9•{-OîFâapÄ,3";
-	private String validFaculty3 = "Brent,Brewer,bbrewer,sem.semper@orcisem.co.uk,0ÉRú±\"ÃùuŸ¦Ù\7X²F´şâ9•{-OîFâapÄ,1";
-	private String validFaculty4 = "Halla,Aguirre,haguirr,Fusce.dolor.quam@amalesuadaid.net,0ÉRú±\"ÃùuŸ¦Ù\7X²F´şâ9•{-OîFâapÄ,3";
-	private String validFaculty5 = "Kevyn,Patel,kpatel,risus@pellentesque.ca,0ÉRú±\"ÃùuŸ¦Ù\7X²F´şâ9•{-OîFâapÄ,1";
-	private String validFaculty6 = "Elton,Briggs,ebriggs,arcu.ac@ipsumsodalespurus.edu,0ÉRú±\"ÃùuŸ¦Ù\7X²F´şâ9•{-OîFâapÄ,3";
-	private String validFaculty7 = "Norman,Brady,nbrady,pede.nonummy@elitfermentum.co.uk,0ÉRú±\"ÃùuŸ¦Ù\7X²F´şâ9•{-OîFâapÄ,1";
-	private String validFaculty8 = "Lacey,Walls,lwalls,nascetur.ridiculus.mus@fermentum.net,0ÉRú±\"ÃùuŸ¦Ù\7X²F´şâ9•{-OîFâapÄ,2";
+	private String validFaculty1 = "Ashely,Witt,awitt,mollis@Fuscealiquetmagna.net,pw,2";
+	private String validFaculty2 = "Fiona,Meadows,fmeadow,pharetra.sed@et.org,pw,3";
+	private String validFaculty3 = "Brent,Brewer,bbrewer,sem.semper@orcisem.co.uk,pw,1";
+	private String validFaculty4 = "Halla,Aguirre,haguirr,Fusce.dolor.quam@amalesuadaid.net,pw,3";
+	private String validFaculty5 = "Kevyn,Patel,kpatel,risus@pellentesque.ca,pw,1";
+	private String validFaculty6 = "Elton,Briggs,ebriggs,arcu.ac@ipsumsodalespurus.edu,pw,3";
+	private String validFaculty7 = "Norman,Brady,nbrady,pede.nonummy@elitfermentum.co.uk,pw,1";
+	private String validFaculty8 = "Lacey,Walls,lwalls,nascetur.ridiculus.mus@fermentum.net,pw,2";
 
 	private String[] validFacultys = { validFaculty1, validFaculty2, validFaculty3, validFaculty4, validFaculty5,
 			validFaculty6, validFaculty7, validFaculty8 };
