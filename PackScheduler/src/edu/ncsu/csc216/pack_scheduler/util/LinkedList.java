@@ -218,24 +218,13 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		public void remove() {
 			if (lastRetrieved == null) {
 				throw new IllegalStateException();
-			} else  {
+			} else {
 				// remove next
 				lastRetrieved.prev.next = lastRetrieved.next;
 				lastRetrieved.next.prev = lastRetrieved.prev;
-				//next = previous.next;
 				lastRetrieved = null;
-				//nextIndex--;
-				//previousIndex--;
-				size--;}
-//			} else if (lastRetrieved == previous) {
-//				// remove previous
-//				next.prev = previous.prev;
-//				previous.prev.next = next;
-//				previous = next.prev;
-//				lastRetrieved = null;
-//				size--;
-//			}
-
+				size--;
+			}
 		}
 
 		@Override
