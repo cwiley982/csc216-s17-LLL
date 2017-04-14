@@ -76,6 +76,14 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		return super.set(index, element);
 	}
 
+	@Override
+	public E remove(int index) {
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException();
+		}
+		return super.remove(index);
+	}
+
 	/**
 	 * Creates ListNodes to be referenced in ListIterator
 	 * 
@@ -219,7 +227,6 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			if (lastRetrieved == null) {
 				throw new IllegalStateException();
 			} else {
-				// remove next
 				lastRetrieved.prev.next = lastRetrieved.next;
 				lastRetrieved.next.prev = lastRetrieved.prev;
 				lastRetrieved = null;
