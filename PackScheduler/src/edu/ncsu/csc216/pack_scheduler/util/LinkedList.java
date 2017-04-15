@@ -76,13 +76,13 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		return super.set(index, element);
 	}
 
-	@Override
-	public E remove(int index) {
-		if (index < 0 || index >= size) {
-			throw new IndexOutOfBoundsException();
-		}
-		return super.remove(index);
-	}
+	// @Override
+	// public E remove(int index) {
+	// if (index < 0 || index >= size) {
+	// throw new IndexOutOfBoundsException();
+	// }
+	// return super.remove(index);
+	// }
 
 	/**
 	 * Creates ListNodes to be referenced in ListIterator
@@ -147,7 +147,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		private ListNode lastRetrieved;
 
 		public LinkedListIterator(int index) {
-			if (index < 0 || index > size) {
+			if (index < 0 || index >= size) {
 				throw new IndexOutOfBoundsException();
 			}
 			previous = front; // index -1
