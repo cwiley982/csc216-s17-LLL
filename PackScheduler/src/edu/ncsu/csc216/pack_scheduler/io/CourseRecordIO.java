@@ -29,12 +29,11 @@ public class CourseRecordIO {
 	 * can be read or found.
 	 */
 	public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException{
-		Scanner fileReader = new Scanner(new File(fileName));
-		SortedList<Course> courses = new SortedList<Course>();
 		if (fileName == null || fileName.equals("")) {
-			fileReader.close();
 			throw new FileNotFoundException();
 		}
+		Scanner fileReader = new Scanner(new File(fileName));
+		SortedList<Course> courses = new SortedList<Course>();
 		while (fileReader.hasNextLine()) {
 			try{
 				Course course = readCourse(fileReader.nextLine());
@@ -63,15 +62,13 @@ public class CourseRecordIO {
 	 * @return
 	 * @throw IllegalArgumentException
 	 */
-	private static Course readCourse(String nextLine) 
-	{
+	private static Course readCourse(String nextLine) {
 		Scanner readInput = new Scanner(nextLine);
 		readInput.useDelimiter(",");
 		Course c = null;
 		int courseCredits;
 		int enrollmentCap;
-		try
-		{
+		try {
 			String courseName = readInput.next();
 			String courseTitle = readInput.next();
 			String courseSection = readInput.next();
@@ -85,8 +82,7 @@ public class CourseRecordIO {
 				int endTime = readInput.nextInt();
 				c = new Course(courseName, courseTitle, courseSection, courseCredits, null, enrollmentCap,
 						courseMeetDays, startTime, endTime);
-			}
-			else {
+			} else {
 				if (!readInput.hasNext()) {
 					c = new Course(courseName, courseTitle, courseSection, courseCredits, null, enrollmentCap,
 							courseMeetDays);
@@ -105,9 +101,7 @@ public class CourseRecordIO {
 
 			readInput.close();
 			return c;
-		}
-		catch (NoSuchElementException e)
-		{
+		} catch (NoSuchElementException e) {
 			readInput.close();
 			throw new IllegalArgumentException();
 		}

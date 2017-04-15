@@ -36,10 +36,9 @@ public class CourseCatalog {
 	 * @throws IllegalArgumentException if file cannot be found
 	 */
 	public void loadCoursesFromFile(String filename){
-		try{
+		try {
 			catalog = CourseRecordIO.readCourseRecords(filename);
-		}
-		catch(FileNotFoundException e){
+		} catch (FileNotFoundException e) {
 			throw new IllegalArgumentException("File not found");
 		}
 		

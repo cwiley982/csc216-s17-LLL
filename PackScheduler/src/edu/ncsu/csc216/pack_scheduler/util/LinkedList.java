@@ -84,6 +84,14 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		return super.remove(index);
 	}
 
+	@Override
+	public E get(int index) {
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException();
+		}
+		return super.get(index);
+	}
+
 	/**
 	 * Creates ListNodes to be referenced in ListIterator
 	 * 
