@@ -1,6 +1,8 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 import java.util.ListIterator;
 
@@ -212,18 +214,4 @@ public class LinkedListTest {
 		assertEquals("Science", list.get(1));
 		assertEquals("Rocks!", list.get(2));
 	}
-
-	@Test
-	public void fixingTsTest(){
-		LinkedList<String> list = new LinkedList<String>();
-		list.add(0, "Claire");
-		list.add(1, "Katherine");
-		
-		// attempt to remove at a negative index
-		try {
-			list.remove(2);
-			fail();
-		} catch (IndexOutOfBoundsException e) {
-		}
-		}
 }
