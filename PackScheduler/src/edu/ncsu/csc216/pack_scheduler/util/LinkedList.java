@@ -43,10 +43,8 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		return size;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.util.AbstractSequentialList#add(int, java.lang.Object)
+	/**
+	 * adds an element to the given index
 	 */
 	@Override
 	public void add(int index, E element) {
