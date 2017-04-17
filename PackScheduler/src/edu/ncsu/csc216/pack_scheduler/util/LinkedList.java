@@ -222,6 +222,8 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			E data = previous.data;
 			previous = previous.prev;
 			next = next.prev;
+			nextIndex--;
+			previousIndex--;
 			return data;
 		}
 
