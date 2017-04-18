@@ -18,6 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 /**
@@ -65,7 +66,6 @@ public class PackSchedulerGUI {
 		pnlLogin = new LoginPanel();
 		pnlRegistrar = new RegistrarPanel();
 		pnlStudent = new StudentPanel();
-		pnlFacultySchedule = new FacultySchedulePanel();
 		
 		panel = new JPanel();
 		cardLayout = new CardLayout();
@@ -73,7 +73,6 @@ public class PackSchedulerGUI {
 		panel.add(pnlLogin, LOGIN_PANEL);
 		panel.add(pnlRegistrar, REGISTRAR_PANEL);
 		panel.add(pnlStudent, STUDENT_PANEL);
-		panel.add(pnlFacultySchedule, FACULTY_PANEL);
 		cardLayout.show(panel, LOGIN_PANEL);
 		
 		Container c = gui.getContentPane();
@@ -202,6 +201,8 @@ public class PackSchedulerGUI {
 					if (manager.getCurrentUser() instanceof Student) {
 						cardLayout.show(panel, STUDENT_PANEL);
 						pnlStudent.updateTables();
+					} else if (manager.getCurrentUser() instanceof Faculty) {
+						cardLayout.show(panel, FACULTY_PANEL);
 					} else {
 						cardLayout.show(panel, REGISTRAR_PANEL);
 					}
