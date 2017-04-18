@@ -37,12 +37,16 @@ public class PackSchedulerGUI {
 	private static final String STUDENT_PANEL = "StudentPanel";
 	/** Constant to identify CourseCatalogPanel */
 	private static final String REGISTRAR_PANEL = "RegistrarPanel";
+	/** Constant to identify FacultySchedulePanel */
+	private static final String FACULTY_PANEL = "FacultyPanel";
 	/** LoginPanel */
 	private LoginPanel pnlLogin;
 	/** RegistrarPanel */
 	private RegistrarPanel pnlRegistrar;
 	/** StudentPanel */
 	private StudentPanel pnlStudent;
+	/** FacultySchedulePanel */
+	private FacultySchedulePanel pnlFacultySchedule;
 	/** CardLayout for GUI */
 	private CardLayout cardLayout;
 	/** Panel that will contain all of the application views */
@@ -61,6 +65,7 @@ public class PackSchedulerGUI {
 		pnlLogin = new LoginPanel();
 		pnlRegistrar = new RegistrarPanel();
 		pnlStudent = new StudentPanel();
+		pnlFacultySchedule = new FacultySchedulePanel();
 		
 		panel = new JPanel();
 		cardLayout = new CardLayout();
@@ -68,6 +73,7 @@ public class PackSchedulerGUI {
 		panel.add(pnlLogin, LOGIN_PANEL);
 		panel.add(pnlRegistrar, REGISTRAR_PANEL);
 		panel.add(pnlStudent, STUDENT_PANEL);
+		panel.add(pnlFacultySchedule, FACULTY_PANEL);
 		cardLayout.show(panel, LOGIN_PANEL);
 		
 		Container c = gui.getContentPane();
