@@ -42,8 +42,6 @@ public class FacultySchedulePanel extends JPanel implements ActionListener {
 	private CourseRollTableModel courseRollTableModel;
 	private CourseCatalog catalog;
 	private FacultySchedule schedule;
-	/** JTable for displaying the catalog of Courses */
-	private JTable tableFacultySchedule;
 	/** Scroll pane for table */
 	private JScrollPane scrollFacultySchedule;
 	/** TableModel for catalog of Courses */
@@ -142,7 +140,7 @@ public class FacultySchedulePanel extends JPanel implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent event) {
 		// TODO Auto-generated method stub
 
 	}
@@ -258,7 +256,7 @@ public class FacultySchedulePanel extends JPanel implements ActionListener {
 		 * from the {@link RequirementTrackerModel}.
 		 */
 		public FacultyScheduleTableModel() {
-
+			// Empty constructor
 		}
 
 		/**
