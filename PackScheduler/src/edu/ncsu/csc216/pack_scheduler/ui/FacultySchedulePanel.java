@@ -344,7 +344,7 @@ public class FacultySchedulePanel extends JPanel implements ActionListener {
 		 */
 		public void updateData(Course c) {
 			if (c != null) {
-				data = //TODO
+				//data = //TODO
 			}
 			
 		}
