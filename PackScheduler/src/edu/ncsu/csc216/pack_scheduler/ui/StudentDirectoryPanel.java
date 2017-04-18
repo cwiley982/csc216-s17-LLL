@@ -216,22 +216,30 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLoadStudentList) {
-			String fileName = getFileName(true);
-			try {
-				studentDirectory.loadStudentsFromFile(fileName);
-				studentDirectoryTableModel.updateData();
-				scrollStudentDirectory.revalidate();
-				scrollStudentDirectory.repaint();
-				studentDirectoryTableModel.fireTableDataChanged();
-			} catch (IllegalArgumentException iae) {
-				JOptionPane.showMessageDialog(this, iae.getMessage());
+			try{
+				String fileName = getFileName(true);
+				try {
+					studentDirectory.loadStudentsFromFile(fileName);
+					studentDirectoryTableModel.updateData();
+					scrollStudentDirectory.revalidate();
+					scrollStudentDirectory.repaint();
+					studentDirectoryTableModel.fireTableDataChanged();
+				} catch (IllegalArgumentException iae) {
+					JOptionPane.showMessageDialog(this, iae.getMessage());
+				}
+			} catch (IllegalStateException ise) {
+				//takes user back to main GUI
 			}
 		} else if (e.getSource() == btnSaveStudentList) {
-			String fileName = getFileName(false);
 			try {
-				studentDirectory.saveStudentDirectory(fileName);
-			} catch (IllegalArgumentException iae) {
-				JOptionPane.showMessageDialog(this, iae.getMessage());
+				String fileName = getFileName(false);
+				try {
+					studentDirectory.saveStudentDirectory(fileName);
+				} catch (IllegalArgumentException iae) {
+					JOptionPane.showMessageDialog(this, iae.getMessage());
+				}
+			} catch (IllegalStateException ise) {
+				//takes user back to main GUI
 			}
 		} else if (e.getSource() == btnNewStudentList) {
 			studentDirectory.newStudentDirectory();
