@@ -197,20 +197,22 @@ public class PackSchedulerGUI {
 				
 				RegistrationManager manager = RegistrationManager.getInstance();
 				try {
-				if (manager.login(id, password)) {
-					txtId.setText("");
-					txtPassword.setText("");
-					if (manager.getCurrentUser() instanceof Student) {
-						cardLayout.show(panel, STUDENT_PANEL);
-						pnlStudent.updateTables();
-					} else if (manager.getCurrentUser() instanceof Faculty) {
-						cardLayout.show(panel, FACULTY_PANEL );
+					if (manager.login(id, password)) {
+						txtId.setText("");
+						txtPassword.setText("");
+						if (manager.getCurrentUser() instanceof Student) {
+							cardLayout.show(panel, STUDENT_PANEL);
+							pnlStudent.updateTables();
+						} else if (manager.getCurrentUser() instanceof Faculty) {
+							cardLayout.show(panel, FACULTY_PANEL);
+							pnlFaculty.updateTables();
+						} else {
+							cardLayout.show(panel, REGISTRAR_PANEL);
+						}
 					} else {
-						cardLayout.show(panel, REGISTRAR_PANEL);
+						JOptionPane.showMessageDialog(this, "Invalid id and password.", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
-				} else {
-					JOptionPane.showMessageDialog(this, "Invalid id and password.", "Error", JOptionPane.ERROR_MESSAGE);
-				}
 				} catch (IllegalArgumentException iae) {
 					JOptionPane.showMessageDialog(this, iae.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -413,18 +415,37 @@ public class PackSchedulerGUI {
 		private static final long serialVersionUID = 1L;
 		/** Button to logout */
 		private JButton btnLogout;
+		private FacultySchedulePanel pnlFacultySchedule;
 		
 		/**
 		 * Temporary class for the FacultyPanel until we implement
 		 * that functionality.
 		 */
 		public FacultyPanel() {
+			super(new GridBagLayout());
+
 			btnLogout = new JButton("Logout");
 			btnLogout.addActionListener(this);
 			
 			add(btnLogout);
+			pnlFacultySchedule = new FacultySchedulePanel();
+
+			GridBagConstraints c = new GridBagConstraints();
+			c.gridx = 0;
+			c.gridy = 1;
+			c.gridwidth = 1;
+			c.weightx = 1;
+			c.weighty = 1;
+			c.anchor = GridBagConstraints.FIRST_LINE_START;
+			c.fill = GridBagConstraints.BOTH;
+			add(pnlFacultySchedule);
 		}
 		
+		public void updateTables() {
+			pnlFacultySchedule.updateTables();
+
+		}
+
 		/**
 		 * Performs actions when any component with an action listener is selected.
 		 * @param e ActionEvent representing the user action
