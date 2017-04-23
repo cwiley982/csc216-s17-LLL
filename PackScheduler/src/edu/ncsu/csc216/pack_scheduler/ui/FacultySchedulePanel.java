@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -84,6 +85,7 @@ public class FacultySchedulePanel extends JPanel implements ActionListener {
 	private JLabel lblOpenSeats = new JLabel("");
 	/** Label for Course Details waitlist */
 	private JLabel lblWaitlist = new JLabel("");
+	private JButton btnLogout = new JButton("Logout");
 	private JTable tableSchedule;
 	private RegistrationManager manager = RegistrationManager.getInstance();
 
@@ -105,6 +107,7 @@ public class FacultySchedulePanel extends JPanel implements ActionListener {
 		c.weighty = .2;
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.BOTH;
+		this.add(btnLogout);
 		this.add(scrollFacultySchedule, c);
 
 		c.gridx = 0;
@@ -141,8 +144,9 @@ public class FacultySchedulePanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		// TODO Auto-generated method stub
-
+		if(event.getSource() == btnLogout) {
+			
+		}
 	}
 
 	/**
@@ -231,7 +235,7 @@ public class FacultySchedulePanel extends JPanel implements ActionListener {
 		 * {@link CourseRoll}.
 		 */
 		public void updateData(Course c) {
-			// TODO
+			data = faculty.getSchedule().getScheduledCourses();
 		}
 	}
 
