@@ -427,10 +427,17 @@ public class PackSchedulerGUI {
 			btnLogout = new JButton("Logout");
 			btnLogout.addActionListener(this);
 			
-			add(btnLogout);
+			GridBagConstraints c = new GridBagConstraints();
+			c.gridx = 0;
+			c.gridy = 0;
+			c.gridwidth = 1;
+			c.weightx = 1;
+			c.anchor = GridBagConstraints.FIRST_LINE_START;
+			c.fill = GridBagConstraints.RELATIVE;
+			add(btnLogout, c);
+
 			pnlFacultySchedule = new FacultySchedulePanel();
 
-			GridBagConstraints c = new GridBagConstraints();
 			c.gridx = 0;
 			c.gridy = 1;
 			c.gridwidth = 1;
@@ -438,12 +445,11 @@ public class PackSchedulerGUI {
 			c.weighty = 1;
 			c.anchor = GridBagConstraints.FIRST_LINE_START;
 			c.fill = GridBagConstraints.BOTH;
-			add(pnlFacultySchedule);
+			add(pnlFacultySchedule, c);
 		}
 		
 		public void updateTables() {
 			pnlFacultySchedule.updateTables();
-
 		}
 
 		/**
