@@ -139,6 +139,21 @@ public class FacultySchedulePanel extends JPanel {
 		courseRollTableModel.updateData();
 	}
 
+	private void updateCourseDetails(Course c) {
+		if (c != null) {
+			lblCredits.setText(Integer.toString(c.getCredits()));
+			lblEnrollmentCap.setText(Integer.toString(c.getCourseRoll().getEnrollmentCap()));
+			lblInstructor.setText(faculty.getId());
+			lblMeeting.setText(c.getMeetingString());
+			lblName.setText(c.getName());
+			lblOpenSeats.setText(Integer.toString(c.getCourseRoll().getOpenSeats()));
+			lblSection.setText(c.getSection());
+			lblTitle.setText(c.getTitle());
+			lblWaitlist.setText(Integer.toString(c.getCourseRoll().getNumberOnWaitlist()));
+			courseRollTableModel = new CourseRollTableModel(c);
+		}
+	}
+
 	/**
 	 * {@link CourseRollTableModel} is the object underlying the {@link JTable}
 	 * object that displays the list of Students to the user.
@@ -238,19 +253,19 @@ public class FacultySchedulePanel extends JPanel {
 								// course in student's schedule is equal to
 								// course
 								// clicked on
-								setValueAt(s.getFirstName(), i, 0);
-								setValueAt(s.getLastName(), i, 1);
-								setValueAt(s.getId(), i, 2);
-								// data[i][0] = s.getFirstName();
-								// data[i][1] = s.getLastName();
-								// data[i][2] = s.getId();
+								// setValueAt(s.getFirstName(), i, 0);
+								// setValueAt(s.getLastName(), i, 1);
+								// setValueAt(s.getId(), i, 2);
+								data[i][0] = s.getFirstName();
+								data[i][1] = s.getLastName();
+								data[i][2] = s.getId();
 							}
 						}
+						// FacultySchedulePanel.this.repaint();
+						// FacultySchedulePanel.this.validate();
 					}
 				}
 
-				FacultySchedulePanel.this.repaint();
-				FacultySchedulePanel.this.validate();
 			}
 		}
 	}
@@ -310,7 +325,7 @@ public class FacultySchedulePanel extends JPanel {
 		 * @return the data at the given location.
 		 */
 		public Object getValueAt(int row, int col) {
-			if (data == null) {
+			if (data == null || row < 0 || row > data[0].length || col < 0 || col > data[0].length) {
 				return null;
 			}
 			return data[row][col];
@@ -335,18 +350,18 @@ public class FacultySchedulePanel extends JPanel {
 			if (faculty != null) {
 				schedule = faculty.getSchedule();
 				data = schedule.getScheduledCourses();
-				for (int i = 0; i < data.length; i++) {
-					setValueAt(data[i][0], i, 0);
-					setValueAt(data[i][1], i, 1);
-					setValueAt(data[i][2], i, 2);
-					setValueAt(data[i][3], i, 3);
-					setValueAt(data[i][4], i, 4);
-				}
+				// for (int i = 0; i < data.length; i++) {
+				// setValueAt(data[i][0], i, 0);
+				// setValueAt(data[i][1], i, 1);
+				// setValueAt(data[i][2], i, 2);
+				// setValueAt(data[i][3], i, 3);
+				// setValueAt(data[i][4], i, 4);
+				// }
 				FacultySchedulePanel.this.repaint();
 				FacultySchedulePanel.this.validate();
+			} else {
+				data = null;
 			}
-
-
 		}
 	}
 
@@ -395,7 +410,7 @@ public class FacultySchedulePanel extends JPanel {
 		};
 		tableSchedule.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableSchedule.setPreferredScrollableViewportSize(new Dimension(500, 500));
-		tableSchedule.setFillsViewportHeight(false);
+		tableSchedule.setFillsViewportHeight(true);
 		tableSchedule.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
 			@Override
@@ -406,18 +421,6 @@ public class FacultySchedulePanel extends JPanel {
 				updateCourseDetails(c);
 			}
 
-			private void updateCourseDetails(Course c) {
-				lblCredits.setText(Integer.toString(c.getCredits()));
-				lblEnrollmentCap.setText(Integer.toString(c.getCourseRoll().getEnrollmentCap()));
-				lblInstructor.setText(faculty.getId());
-				lblMeeting.setText(c.getMeetingString());
-				lblName.setText(c.getName());
-				lblOpenSeats.setText(Integer.toString(c.getCourseRoll().getOpenSeats()));
-				lblSection.setText(c.getSection());
-				lblTitle.setText(c.getTitle());
-				lblWaitlist.setText(Integer.toString(c.getCourseRoll().getNumberOnWaitlist()));
-				courseRollTableModel = new CourseRollTableModel(c);
-			}
 
 		});
 
