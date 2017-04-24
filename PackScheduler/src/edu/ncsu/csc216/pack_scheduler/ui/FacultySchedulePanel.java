@@ -34,7 +34,8 @@ import edu.ncsu.csc216.pack_scheduler.user.schedule.FacultySchedule;
  *
  */
 public class FacultySchedulePanel extends JPanel {
-
+	
+	public static final long serialVersionUID = 1L;
 	private JTable tableCourseRoll;
 	/** Scroll pane for table */
 	private JScrollPane scrollCourseRoll;
@@ -240,9 +241,15 @@ public class FacultySchedulePanel extends JPanel {
 		 * {@link CourseRoll}.
 		 */
 		public void updateData() {
+			//add course roll method
+			//data = roll.get2DArray
+			//use setValueAt
+			//loop through data.length
+			//inner loop through 3
 			faculty = (Faculty) manager.getCurrentUser();
 			if (faculty != null) {
 				schedule = faculty.getSchedule();
+				data = new String[directory.getStudentDirectory().length - 1][3];
 				for (int i = 0; i < directory.getStudentDirectory().length; i++) {
 					Student s = directory.getStudentById(directory.getStudentDirectory()[i][2]);
 					if (s != null) {
@@ -346,21 +353,13 @@ public class FacultySchedulePanel extends JPanel {
 		 * Updates the given model with {@link Course} information from the {@link CourseCatalog}.
 		 */
 		public void updateData() {
-			faculty = (Faculty) manager.getCurrentUser();
-			if (faculty != null) {
-				schedule = faculty.getSchedule();
+			if (schedule != null) {
+				if(schedule.getNumScheduledCourses() != data.length) {
+					data = new Object[schedule.getNumScheduledCourses()][5];
+				}
 				data = schedule.getScheduledCourses();
-				// for (int i = 0; i < data.length; i++) {
-				// setValueAt(data[i][0], i, 0);
-				// setValueAt(data[i][1], i, 1);
-				// setValueAt(data[i][2], i, 2);
-				// setValueAt(data[i][3], i, 3);
-				// setValueAt(data[i][4], i, 4);
-				// }
-				FacultySchedulePanel.this.repaint();
-				FacultySchedulePanel.this.validate();
-			} else {
-				data = null;
+				//FacultySchedulePanel.this.repaint();
+				//FacultySchedulePanel.this.validate();
 			}
 		}
 	}
