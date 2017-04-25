@@ -151,7 +151,7 @@ public class FacultySchedulePanel extends JPanel {
 			lblSection.setText(c.getSection());
 			lblTitle.setText(c.getTitle());
 			lblWaitlist.setText(Integer.toString(c.getCourseRoll().getNumberOnWaitlist()));
-			courseRollTableModel = new CourseRollTableModel(c);
+			courseRollTableModel = new CourseRollTableModel();
 		}
 	}
 
@@ -176,8 +176,7 @@ public class FacultySchedulePanel extends JPanel {
 		 * Constructs the {@link CourseRollTableModel} by requesting the latest
 		 * information from the {@link RequirementTrackerModel}.
 		 */
-		public CourseRollTableModel(Course c) {
-			this.c = c;
+		public CourseRollTableModel() {
 			updateData();
 		}
 
@@ -241,6 +240,13 @@ public class FacultySchedulePanel extends JPanel {
 		 * {@link CourseRoll}.
 		 */
 		public void updateData() {
+			try {
+				String name = tableSchedule.getValueAt(tableSchedule.getSelectedRow(), 0).toString();
+				String section = tableSchedule.getValueAt(tableSchedule.getSelectedRow(), 1).toString();
+				c = catalog.getCourseFromCatalog(name, section);
+			} catch (NullPointerException e) {
+				c = null;
+			}
 			if (c != null) {
 				data = c.getCourseRoll().get2DArray();
 
@@ -339,7 +345,7 @@ public class FacultySchedulePanel extends JPanel {
 		Border lowerEtched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder border = BorderFactory.createTitledBorder(lowerEtched, "Course Roll");
 
-		courseRollTableModel = new CourseRollTableModel(null);
+		courseRollTableModel = new CourseRollTableModel();
 		tableCourseRoll = new JTable(courseRollTableModel);
 		tableCourseRoll.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableCourseRoll.setPreferredScrollableViewportSize(new Dimension(500, 500));
@@ -388,6 +394,7 @@ public class FacultySchedulePanel extends JPanel {
 				String name = tableSchedule.getValueAt(tableSchedule.getSelectedRow(), 0).toString();
 				String section = tableSchedule.getValueAt(tableSchedule.getSelectedRow(), 1).toString();
 				Course c = catalog.getCourseFromCatalog(name, section);
+				courseRollTableModel.updateData();
 				updateCourseDetails(c);
 			}
 

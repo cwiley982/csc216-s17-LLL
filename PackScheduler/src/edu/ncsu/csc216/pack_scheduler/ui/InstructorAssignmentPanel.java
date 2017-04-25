@@ -34,7 +34,7 @@ import edu.ncsu.csc216.pack_scheduler.user.Faculty;
  * 
  * @author Sarah Heckman
  */
-public class InstructorAssignmentPanel  extends JPanel implements ActionListener {
+public class InstructorAssignmentPanel extends JPanel implements ActionListener {
 	/** ID number used for object serialization. */
 	private static final long serialVersionUID = 1L;
 	/** Button for adding the selected faculty to the selected course as instructor */
