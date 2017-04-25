@@ -151,7 +151,7 @@ public class FacultySchedulePanel extends JPanel {
 			lblSection.setText(c.getSection());
 			lblTitle.setText(c.getTitle());
 			lblWaitlist.setText(Integer.toString(c.getCourseRoll().getNumberOnWaitlist()));
-			courseRollTableModel = new CourseRollTableModel();
+			// courseRollTableModel = new CourseRollTableModel();
 		}
 	}
 
