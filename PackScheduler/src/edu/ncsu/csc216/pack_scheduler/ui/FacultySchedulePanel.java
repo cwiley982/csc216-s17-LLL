@@ -86,15 +86,15 @@ public class FacultySchedulePanel extends JPanel {
 	private JLabel lblWaitlist = new JLabel("");
 	private JTable tableSchedule;
 	private RegistrationManager manager = RegistrationManager.getInstance();
-	//private StudentDirectory directory;
+
 
 	/**
 	 * Creates the faculty schedule panel
 	 */
 	public FacultySchedulePanel() {
 		super(new GridBagLayout());
-		//directory = manager.getStudentDirectory();
 		faculty = (Faculty) manager.getCurrentUser();
+		catalog = manager.getCourseCatalog();
 
 		setUpFacultyScheduleTableView();
 		setUpCourseDetailsPanel();
@@ -241,16 +241,11 @@ public class FacultySchedulePanel extends JPanel {
 		 * {@link CourseRoll}.
 		 */
 		public void updateData() {
-			//add course roll method
-			//data = roll.get2DArray
-			//use setValueAt
-			//loop through data.length
-			//inner loop through 3
-			data = c.getCourseRoll().get2DArray();
-			for(int i = 0; i < data.length; i++) {
-				for(int j = 0; j < 3; j++) {
-					this.setValueAt(data[i][j], i, j);
-				}
+			if (c != null) {
+				data = c.getCourseRoll().get2DArray();
+
+				// FacultySchedulePanel.this.repaint();
+				// FacultySchedulePanel.this.validate();
 			}
 		}
 	}
@@ -331,13 +326,14 @@ public class FacultySchedulePanel extends JPanel {
 		 * Updates the given model with {@link Course} information from the {@link CourseCatalog}.
 		 */
 		public void updateData() {
-			if (schedule != null) {
-				if(schedule.getNumScheduledCourses() != data.length) {
-					data = new Object[schedule.getNumScheduledCourses()][5];
-				}
+			if (faculty != null) {
+				// if(schedule.getNumScheduledCourses() != data.length) {
+				// data = new Object[schedule.getNumScheduledCourses()][5];
+				// }
+				schedule = faculty.getSchedule();
 				data = schedule.getScheduledCourses();
-				//FacultySchedulePanel.this.repaint();
-				//FacultySchedulePanel.this.validate();
+				FacultySchedulePanel.this.repaint();
+				FacultySchedulePanel.this.validate();
 			}
 		}
 	}
@@ -350,7 +346,7 @@ public class FacultySchedulePanel extends JPanel {
 		tableCourseRoll = new JTable(courseRollTableModel);
 		tableCourseRoll.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableCourseRoll.setPreferredScrollableViewportSize(new Dimension(500, 500));
-		tableCourseRoll.setFillsViewportHeight(false);
+		tableCourseRoll.setFillsViewportHeight(true);
 
 		scrollCourseRoll = new JScrollPane(tableCourseRoll, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
