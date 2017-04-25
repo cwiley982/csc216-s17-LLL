@@ -200,6 +200,10 @@ public class CourseRollTest {
 		
 		assertTrue(r.canEnroll(a));
 		r.enroll(a);
+		String[][] testArray = r.get2DArray();
+		assertEquals(testArray[0][0], a.getFirstName());
+		assertEquals(testArray[0][1], a.getLastName());
+		assertEquals(testArray[0][2], a.getId());
 		r.enroll(b);
 		r.enroll(c);
 		assertFalse(r.canEnroll(a));
