@@ -22,7 +22,7 @@ import javax.swing.table.AbstractTableModel;
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
-import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+//import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
@@ -86,14 +86,14 @@ public class FacultySchedulePanel extends JPanel {
 	private JLabel lblWaitlist = new JLabel("");
 	private JTable tableSchedule;
 	private RegistrationManager manager = RegistrationManager.getInstance();
-	private StudentDirectory directory;
+	//private StudentDirectory directory;
 
 	/**
 	 * Creates the faculty schedule panel
 	 */
 	public FacultySchedulePanel() {
 		super(new GridBagLayout());
-		directory = manager.getStudentDirectory();
+		//directory = manager.getStudentDirectory();
 		faculty = (Faculty) manager.getCurrentUser();
 
 		setUpFacultyScheduleTableView();
@@ -246,33 +246,11 @@ public class FacultySchedulePanel extends JPanel {
 			//use setValueAt
 			//loop through data.length
 			//inner loop through 3
-			faculty = (Faculty) manager.getCurrentUser();
-			if (faculty != null) {
-				schedule = faculty.getSchedule();
-				data = new String[directory.getStudentDirectory().length - 1][3];
-				for (int i = 0; i < directory.getStudentDirectory().length; i++) {
-					Student s = directory.getStudentById(directory.getStudentDirectory()[i][2]);
-					if (s != null) {
-						String[][] studentSchedule = s.getSchedule().getScheduledCourses();
-						for (int j = 0; j < studentSchedule.length; j++) {
-							if (catalog.getCourseFromCatalog(studentSchedule[j][0], studentSchedule[j][1])
-									.compareTo(c) == 0) {
-								// course in student's schedule is equal to
-								// course
-								// clicked on
-								// setValueAt(s.getFirstName(), i, 0);
-								// setValueAt(s.getLastName(), i, 1);
-								// setValueAt(s.getId(), i, 2);
-								data[i][0] = s.getFirstName();
-								data[i][1] = s.getLastName();
-								data[i][2] = s.getId();
-							}
-						}
-						// FacultySchedulePanel.this.repaint();
-						// FacultySchedulePanel.this.validate();
-					}
+			data = c.getCourseRoll().get2DArray();
+			for(int i = 0; i < data.length; i++) {
+				for(int j = 0; j < 3; j++) {
+					this.setValueAt(data[i][j], i, j);
 				}
-
 			}
 		}
 	}

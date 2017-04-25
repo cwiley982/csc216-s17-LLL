@@ -157,5 +157,19 @@ public class CourseRoll {
 		}
 		return true;
 	}
-
+	
+	/**
+	 * returns a 2D array representation of Students in courseroll
+	 * @return String array
+	 */
+	public String[][] get2DArray() {
+		String[][] returnArray = new String[roll.size()][3];
+		for(int i = 0; i < roll.size(); i++) {
+			Student s = roll.get(i);
+			returnArray[i][0] = s.getFirstName();
+			returnArray[i][1] = s.getLastName();
+			returnArray[i][2] = s.getId();
+		}
+		return returnArray;
+	}
 }
