@@ -244,8 +244,8 @@ public class FacultySchedulePanel extends JPanel {
 			if (c != null) {
 				data = c.getCourseRoll().get2DArray();
 
-				// FacultySchedulePanel.this.repaint();
-				// FacultySchedulePanel.this.validate();
+				FacultySchedulePanel.this.repaint();
+				FacultySchedulePanel.this.validate();
 			}
 		}
 	}
@@ -327,9 +327,6 @@ public class FacultySchedulePanel extends JPanel {
 		 */
 		public void updateData() {
 			if (faculty != null) {
-				// if(schedule.getNumScheduledCourses() != data.length) {
-				// data = new Object[schedule.getNumScheduledCourses()][5];
-				// }
 				schedule = faculty.getSchedule();
 				data = schedule.getScheduledCourses();
 				FacultySchedulePanel.this.repaint();
