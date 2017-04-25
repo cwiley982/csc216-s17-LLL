@@ -336,8 +336,8 @@ public class FacultySchedulePanel extends JPanel {
 					data = new Object[schedule.getNumScheduledCourses()][5];
 				}
 				data = schedule.getScheduledCourses();
-				FacultySchedulePanel.this.repaint();
-				FacultySchedulePanel.this.validate();
+				//FacultySchedulePanel.this.repaint();
+				//FacultySchedulePanel.this.validate();
 			}
 		}
 	}
